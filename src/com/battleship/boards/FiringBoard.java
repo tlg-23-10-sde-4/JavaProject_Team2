@@ -1,75 +1,57 @@
 package com.battleship.boards;
 
 import java.util.HashMap;
-class FiringBoard {
-
+public class FiringBoard {
 
 //FIELDS
-    private HashMap<HashMap<String, Integer>, HashMap<String, Integer>> fireMap;
+    private String[] fireMap;
 
-    private HashMap<String, Integer> firingBoardHits;
+    private String[] firingBoardHits;
 
-    private HashMap<String, Integer> firingBoardMisses;
+    private String[] firingBoardMisses;
 
-    private String aimingVertical;
-    private Integer aimingHorizontal;
+    private String aiming;
 
+    //CONSTRUCTOR
 
-
-    //maybe CTOR here?
-//    public FiringBoard(HashMap<String, Integer> fireBoard) throws IllegalArgumentException {
-//    }
 
     //METHODS
     public void fire() {
-        //this will check shipBoard to see if the key and value that the user put in is equal to one from one of the boats
-        //todo: make sure that it has the key AND the value in ONE ROW (paired)
-        //todo: change "firingBoardHits" to the shipLocation map once built
-        if (firingBoardHits.containsKey(getAimingVertical()) && firingBoardHits.containsValue(getAimingHorizontal())) {
-            System.out.println("Your shell impacted an enemy ship!");
-            firingBoardHits.put(getAimingVertical(), getAimingHorizontal());
-        }
-        else {
-            System.out.println("Your shell impacted empty water!");
-            firingBoardMisses.put(getAimingVertical(), getAimingHorizontal());
-        }
+
     }
 
     //ACCESSOR METHODS
-    //getters and setters for where the user wants to "fire" a round. that info will be put into the fire() method
+    public String[] getFireMap() {
+        return fireMap;
+    }
 
-    //to see ALL fires, misses and hits
-    //TODO: make a graphic of some type to display this info (.toString of some kind?)
-    public HashMap<String, Integer> getFiringBoard() {
+    public void setFireMap(String[] fireMap) {
+        this.fireMap = fireMap;
+    }
+
+    public String[] getFiringBoardHits() {
         return firingBoardHits;
     }
-    //to see just hits
-    //TODO: make a graphic of some type to display this info
-    public HashMap<String, Integer> getFiringBoardHits() {
-        return firingBoardHits;
+
+    public void setFiringBoardHits(String[] firingBoardHits) {
+        this.firingBoardHits = firingBoardHits;
     }
-    //to see just misses
-    //TODO: make a graphic of some type to display this info
-    public HashMap<String, Integer> getFiringBoardMisses() {
+
+    public String[] getFiringBoardMisses() {
         return firingBoardMisses;
     }
 
-    //aiming inputs start,
-    //TODO: make sure that they can't try to fire "off the board"
-    public String getAimingVertical() {
-        return aimingVertical;
-    }
-    public void setAimingVertical(String aimingVertical) {
-        this.aimingVertical = aimingVertical;
+    public void setFiringBoardMisses(String[] firingBoardMisses) {
+        this.firingBoardMisses = firingBoardMisses;
     }
 
-    //TODO: make sure that they can't try to fire "off the board"
-    public Integer getAimingHorizontal() {
-        return aimingHorizontal;
+    public String getAiming() {
+        return aiming;
     }
 
-    public void setAimingHorizontal(Integer aimingHorizontal) {
-        this.aimingHorizontal = aimingHorizontal;
+    public void setAiming(String aiming) {
+        this.aiming = aiming;
     }
-    //aiming input end
+
+    //HELPERS
 }
