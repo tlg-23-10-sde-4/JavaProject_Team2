@@ -1,5 +1,3 @@
-package com.battleship.ship;
-
 public enum ShipType {
     SUBMARINE("Submarine", 3),
     SMALL_BOAT("Small Boat", 2),
