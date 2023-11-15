@@ -1,3 +1,5 @@
+package com.battleship.ship;
+
 public class Ship {
     private ShipType type;
     private int hits;
