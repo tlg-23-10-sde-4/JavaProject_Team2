@@ -6,7 +6,7 @@ import com.battleship.ship.ShipType; //Ship and shiptype need to be in a package
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-class Player {
+public class Player {
 
     private String fleetName;
 
@@ -20,7 +20,7 @@ class Player {
 
     public void placeShips(Scanner scanner, ShipBoard shipBoard){
         for (ShipType ship : ShipType.values()){
-            System.out.println("Placing ship: " + ship + "; size: " + ship.getSize());
+            System.out.println("Placing ship: " + ship.getName() + "; size: " + ship.getSize());
             String row;
             int col;
             boolean isHorizontal;
