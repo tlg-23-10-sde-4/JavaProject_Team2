@@ -1,14 +1,15 @@
 package com.battleship.boards;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import com.battleship.boards.ShipBoard.*;
 public class FiringBoard {
 
 //FIELDS
-    private String[] fireMap;
+    private ArrayList<String> fireRecord;
 
-    private String[] firingBoardHits;
+    private ArrayList<String> firingBoardHits;
 
-    private String[] firingBoardMisses;
+    private ArrayList<String> firingBoardMisses;
 
     private String aiming;
 
@@ -20,31 +21,57 @@ public class FiringBoard {
 
     //METHODS
     public void fire() {
-
+        for (String shot : fireRecord) {
+            if (getAiming().equals(shot)) {
+                System.out.println("That grid has already been hit!");
+            }
+            else {
+                fireRecord.add(getAiming());
+            }
+        }
+    }
+    public void impact() {
+        for (ArrayList<String> boat : ShipBoard.getShipBoard()){
+            if (boat.contains(getAiming())) {
+                firingBoardHits.add(getAiming());
+                System.out.println("That round hit a ship!" + getAiming());
+            }
+            else {
+                firingBoardMisses.add(getAiming());
+                System.out.println("That round hit water." + getAiming());
+            }
+        }
+    }
+    //TODO: write a "sink()" in ship board, and delete an arraylist once the list contains null or length 0.
+    public void sink() {
+        for (String hit : getFiringBoardHits()) {
+            for (ArrayList<String> boat : ShipBoard.getShipBoard())
+                boat.remove(hit);
+        }
     }
 
     //ACCESSOR METHODS
-    public String[] getFireMap() {
-        return fireMap;
+    public ArrayList<String> getFireRecord() {
+        return fireRecord;
     }
 
-    public void setFireMap(String[] fireMap) {
-        this.fireMap = fireMap;
+    public void setFireRecord(ArrayList<String> fireRecord) {
+        this.fireRecord = fireRecord;
     }
 
-    public String[] getFiringBoardHits() {
+    public ArrayList<String> getFiringBoardHits() {
         return firingBoardHits;
     }
 
-    public void setFiringBoardHits(String[] firingBoardHits) {
+    public void setFiringBoardHits(ArrayList<String> firingBoardHits) {
         this.firingBoardHits = firingBoardHits;
     }
 
-    public String[] getFiringBoardMisses() {
+    public ArrayList<String> getFiringBoardMisses() {
         return firingBoardMisses;
     }
 
-    public void setFiringBoardMisses(String[] firingBoardMisses) {
+    public void setFiringBoardMisses(ArrayList<String> firingBoardMisses) {
         this.firingBoardMisses = firingBoardMisses;
     }
 
