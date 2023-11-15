@@ -7,7 +7,7 @@ public class BattleshipGame {
 
     public BattleshipGame() {
         // TODO: initialize the board
-        // TODO: place ships Question: Will this be automatic or manually place be each player?
+        // TODO: place ships (each player sets their respective ships)
     }
 
     // TODO: game board initialization method
