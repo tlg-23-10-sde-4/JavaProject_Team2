@@ -7,5 +7,11 @@ class Ship {
         this.hits = 0;
     }
 
+    boolean hit() { // 'hit' represents a hit on the ship
+        hits++;
+        return hits == type.getSize(); // checks to see if the ShipType is hit equal to its size(hits allowed),
+                                       // true = sunk, false = not sunk
+    }
+
     // TODO: call to firingBoard, shipBoard
 }
