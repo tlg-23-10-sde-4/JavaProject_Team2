@@ -10,9 +10,14 @@ public class BattleshipGame {
         // TODO: place ships (each player sets their respective ships)
     }
 
-    // TODO: game board initialization method
+    // TODO: game board method
 
     // TODO: place ships on the board method
 
     // TODO: print board to console method
+
+    public static void main(String[] args) {
+        BattleshipGame game = new BattleshipGame();
+        game.startGame(); // calling method in Player() class
+    }
 }
