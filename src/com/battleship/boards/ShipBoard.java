@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.List;
 
-class ShipBoard {
+public class ShipBoard {
     //FIELDS
     HashMap<Array, Array> shipBoard;
 
