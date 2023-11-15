@@ -14,6 +14,8 @@ public class FiringBoard {
 
     //CONSTRUCTOR
 
+    public FiringBoard(int boardSize) {
+    }
 
 
     //METHODS

@@ -8,6 +8,9 @@ public class ShipBoard {
     //FIELDS
     HashMap<Array, Array> shipBoard;
 
+    public ShipBoard(int boardSize) { // gage - create a constructor
+    }
+
     //ACCESSORS
     public HashMap<Array, Array> getShipBoard() {
         return shipBoard;
