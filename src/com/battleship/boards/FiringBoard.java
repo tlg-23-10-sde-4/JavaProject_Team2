@@ -14,6 +14,8 @@ class FiringBoard {
     private String aimingVertical;
     private Integer aimingHorizontal;
 
+    public FiringBoard(int boardSize) {
+    }
 
 
     //maybe CTOR here?
