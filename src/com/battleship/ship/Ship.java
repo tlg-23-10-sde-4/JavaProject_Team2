@@ -1,3 +1,5 @@
+package com.battleship.ship;
+
 class Ship {
     private ShipType type;
     private int hits;
@@ -9,7 +11,7 @@ class Ship {
 
     boolean hit() { // 'hit' represents a hit on the ship
         hits++;
-        return hits == type.getSize(); // checks to see if the ShipType is hit equal to its size(hits allowed),
+        return hits == type.getSize(); // checks to see if the com.battleship.ship.ShipType is hit equal to its size(hits allowed),
                                        // true = sunk, false = not sunk
     }
 
