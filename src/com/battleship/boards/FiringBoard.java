@@ -15,13 +15,14 @@ public class FiringBoard {
 
     //CONSTRUCTOR
 
-    public FiringBoard(int boardSize) {
+    public FiringBoard(ArrayList<String> boardSize) {
     }
 
     //METHODS
     public boolean fire() {
         boolean validShot = false;
-        if (fireRecord.isEmpty()) {
+        if (fireRecord == null) {
+            fireRecord = new ArrayList<>();
             fireRecord.add(takeTurn());
             validShot = true;
         }
