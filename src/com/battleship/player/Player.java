@@ -1,5 +1,6 @@
 package com.battleship.player;
 
+import com.battleship.boards.FiringBoard;
 import com.battleship.boards.ShipBoard; //ShipBoard needs to be public
 import com.battleship.ship.ShipType; //Ship and shiptype need to be in a package
 
@@ -9,6 +10,15 @@ import java.util.regex.Pattern;
 public class Player {
 
     private String fleetName;
+    private final String pattern = "[a-jA-J]{1}[0-9]{1}";
+
+    public Player() {
+
+    }
+
+    public Player(String name) {
+        setFleetName(name);
+    }
 
     public String getFleetName() {
         return fleetName;
@@ -19,24 +29,36 @@ public class Player {
     }
 
     public void placeShips(Scanner scanner, ShipBoard shipBoard){
+
         for (ShipType ship : ShipType.values()){
             System.out.println("Placing ship: " + ship.getName() + "; size: " + ship.getSize());
-            String row;
-            int col;
+            String shipPlacement;
             boolean isHorizontal;
-            Pattern pattern;
 
             do {
-                System.out.println("Enter the row (A-J): ");
-                row = scanner.next().toUpperCase();
-                System.out.println("Enter the col (1-10): ");
-                col = scanner.nextInt() - 1;
+                System.out.println("Enter the position you want "+ ship.getName() +" (e.g., C3): ");
+                try {
+                    shipPlacement = scanner.next();
+                    shipPlacement = shipPlacement.trim();
+
+
+                } catch (){}
                 System.out.println("Ship horizontal? (true/false)");
                 isHorizontal = scanner.nextBoolean();
-            } while (!ShipBoard.isValidPlacement(row, col, isHorizontal));
+            } while (!ShipBoard.isValidPlacement(shipPlacement, isHorizontal, ship));
 
             ShipBoard.placeShip(ship);
         }
     }
+    // TODO add takeTurn method
+    public String takeTurn(Scanner scanner){
 
+        System.out.println(getFleetName()+ " enter your guess (e.g., B7): ");
+        scanner = new Scanner(System.in);
+        String guess = scanner.next().toUpperCase();
+        if (!guess.matches(pattern)){
+            // Retry guess
+        }
+        return guess;
+    }
 }
