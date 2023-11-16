@@ -10,10 +10,14 @@ public class ShipBoard {
 
     //FIELDS
     public static ArrayList<ArrayList<String>> shipBoard;
+    public static ArrayList<String> loadingDock;
     //CONSTRUCTOR
-    public ShipBoard(ArrayList<String> ship) {
-        if (isValidPlacement(ship)) {
-            shipBoard.add(ship);
+    public static void placeShip(ArrayList<String> location) {
+        if (isValidPlacement(location)) {
+            if (shipBoard == null) {
+                shipBoard = new ArrayList<>();
+            }
+            shipBoard.add(location);
         }
     }
 
@@ -27,18 +31,17 @@ public class ShipBoard {
     }
 
     // I think a switch case will work best for this along with a ternary in each case
-    //TODO: for/each through the ship board to check if there are duplicates
     public static boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
-        for (String grid : location) {
-            if (shipBoard.isEmpty()) {
-                shipBoard.add(location);
-                result = true;
-            }
-            else {
+        if (shipBoard == null) {
+            result = true;
+        }
+        else {
+            for (String grid : location) {
                 for (ArrayList<String> boat : shipBoard) {
                     if (boat.contains(grid)) {
-                        System.out.println("That ships grid causes a collision with another one of your ships! Please choose a new grid.");
+                        System.out.println("That ships grid causes a collision with another one of your ships!" +
+                                " Please choose a new grid.");
                         result = false;
                     }
                     result = true;
@@ -48,15 +51,7 @@ public class ShipBoard {
         return result;
     }
 
-    // TODO: pass the given location array from player into the ship board
-    public static void placeShip(ArrayList<String> location) {
-        if (isValidPlacement(location)) {
-            shipBoard.add(location);
-        }
-    }
-
-    //TODO implement
-    public boolean allShipsSunk() {
+    public static boolean allShipsSunk() {
         return shipBoard.size() == 0;
     }
 
