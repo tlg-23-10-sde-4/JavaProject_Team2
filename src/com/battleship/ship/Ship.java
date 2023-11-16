@@ -37,5 +37,4 @@ public class Ship {
 
         return shipCoordinates;
     }
-    // TODO: call to firingBoard, shipBoard
 }
