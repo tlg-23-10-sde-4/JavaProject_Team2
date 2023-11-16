@@ -3,7 +3,7 @@ package com.battleship.ship;
 import java.util.ArrayList;
 
 public class Ship {
-    private ShipType type;
+    private final ShipType type;
     private int hits;
 
     public Ship(ShipType type) {
