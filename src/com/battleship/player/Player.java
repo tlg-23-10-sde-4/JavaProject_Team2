@@ -56,8 +56,10 @@ public class Player {
         System.out.println(getFleetName()+ " enter your guess (e.g., B7): ");
         scanner = new Scanner(System.in);
         String guess = scanner.next().toUpperCase();
-        if (!guess.matches(pattern)){
-            // Retry guess
+
+        while (!guess.matches(pattern)){
+            System.out.println("That is an invalid sequence, valid sequence = A9. first being A-J and second being 0-9");
+            guess = scanner.next();
         }
         return guess;
     }
