@@ -9,16 +9,16 @@ import java.util.ArrayList;
 public class ShipBoard {
 
     //FIELDS
-    public static ArrayList<String> shipBoard;
+    public static ArrayList<ArrayList<String>> shipBoard;
 
     public ShipBoard(int boardSize) { // gage - create a constructor
     }
 
     // I think a switch case will work best for this along with a ternary in each case
-    public static boolean isValidPlacement(String location, boolean isHorizontal, ShipType shipType){
+    public static boolean isValidPlacement(ArrayList<String> location, boolean isHorizontal, ShipType shipType){
         boolean result = false;
-        char first = location.charAt(0);
-        char second = location.charAt(1);
+        String first = location.get(0);
+        String second = location.get(1);
         int shipLength = shipType.getSize();
         if (isHorizontal){
             //TODO implement this thought
@@ -38,7 +38,7 @@ public class ShipBoard {
     }
 
     // This may need some rework
-    public static void placeShip(ShipType ship, String location) {
+    public static void placeShip(ShipType ship, ArrayList<String> location) {
         // TODO implement this
         boolean isHorizontal = false;
         ShipType shipType = null;
@@ -54,11 +54,11 @@ public class ShipBoard {
     }
 
     //ACCESSORS
-    public static ArrayList<String> getShipBoard() {
+    public static ArrayList<ArrayList<String>> getShipBoard() {
         return shipBoard;
     }
 
-    public void setShipBoard(ArrayList<String> shipBoard) {
+    public void setShipBoard(ArrayList<ArrayList<String>> shipBoard) {
         ShipBoard.shipBoard = shipBoard;
     }
 }
