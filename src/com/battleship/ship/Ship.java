@@ -1,5 +1,7 @@
 package com.battleship.ship;
 
+import java.util.ArrayList;
+
 public class Ship {
     private ShipType type;
     private int hits;
@@ -9,11 +11,31 @@ public class Ship {
         this.hits = 0;
     }
 
-    boolean hit() { // 'hit' represents a hit on the ship
-        hits++;
-        return hits == type.getSize(); // checks to see if the com.battleship.ship.ShipType is hit equal to its size(hits allowed),
-                                       // true = sunk, false = not sunk
-    }
+    public static ArrayList<String> generateShipPlacement(ShipType shipType, String location, boolean isHorizontal){
+        ArrayList<String> shipCoordinates = new ArrayList<>();
+        int size = shipType.getSize();
+        char firstChar = location.charAt(0);
+        char secondChar = location.charAt(1);
+        String firstLetter = String.valueOf(firstChar);
+        String secondLetter = String.valueOf(secondChar);
+        if (isHorizontal){
+            for (int i = 0; i < size; i++){
+                String result = firstLetter;
+                String value = String.valueOf(secondChar);
+                secondChar += 1;
+                shipCoordinates.add(result+value);
+            }
+        }
 
+        else {
+            for (int i = 0; i < size; i++){
+                String value = String.valueOf(firstChar);
+                firstChar++;
+                shipCoordinates.add(value+secondLetter);
+            }
+        }
+
+        return shipCoordinates;
+    }
     // TODO: call to firingBoard, shipBoard
 }
