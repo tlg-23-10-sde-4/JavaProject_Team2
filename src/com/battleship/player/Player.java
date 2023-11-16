@@ -52,7 +52,7 @@ public class Player {
                 shipPlacement = shipPlacement.trim();
                 shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
             }
-            ShipBoard.placeShip(ship, shipGenerated);
+            ShipBoard.placeShip(shipGenerated);
         }
     }
 
