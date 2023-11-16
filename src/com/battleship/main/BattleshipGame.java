@@ -24,6 +24,7 @@ public class BattleshipGame {
     public void startGame() {
         Scanner scanner = new Scanner(System.in);
         player.placeShips(scanner, playerBoard); // players can place their ships
+        String guess;
         while (!gameOver) {
             /* TODO: implement firingBoard and shipBoard for players take turns firing at each other's ships,
              * update gameOver based whether all ships are sunk or not
@@ -33,7 +34,8 @@ public class BattleshipGame {
              * Check if all ships are sunk or update gameOver.
              */
             // player fires a shot
-            boolean hit = player.takeTurn(scanner, playerBoard, firingBoard); //TODO: placeholder for method in Player()
+            boolean hit = false; // TODO need to validate hit from FiringBoard
+            guess = player.takeTurn(scanner);
             if (hit) {
                 System.out.println("Hit!");
             }

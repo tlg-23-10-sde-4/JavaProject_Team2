@@ -1,5 +1,6 @@
 package com.battleship.boards;
 
+import com.battleship.player.Player;
 import com.battleship.ship.Ship;
 import com.battleship.ship.ShipType;
 
@@ -8,11 +9,12 @@ import java.util.ArrayList;
 public class ShipBoard {
 
     //FIELDS
-    public static ArrayList<ArrayList<String>> shipBoard;
+    public static ArrayList<String> shipBoard;
 
     public ShipBoard(int boardSize) { // gage - create a constructor
     }
 
+    // I think a switch case will work best for this along with a ternary in each case
     public static boolean isValidPlacement(String location, boolean isHorizontal, ShipType shipType){
         boolean result = false;
         char first = location.charAt(0);
@@ -35,17 +37,28 @@ public class ShipBoard {
         return result;
     }
 
+    // This may need some rework
+    public static void placeShip(ShipType ship, String location) {
+        // TODO implement this
+        boolean isHorizontal = false;
+        ShipType shipType = null;
+        // verifies ship is valid before
+        if (isValidPlacement(location, isHorizontal, shipType)){
+            shipBoard.add(location);
+        }
+    }
+
+    //TODO implement
+    public boolean allShipsSunk() {
+        return false;
+    }
+
     //ACCESSORS
-    public static ArrayList<ArrayList<String>> getShipBoard() {
+    public static ArrayList<String> getShipBoard() {
         return shipBoard;
     }
 
-    public static void placeShip(ShipType ship) {
-        // TODO implement this
-    }
-
-    public void setShipBoard(ArrayList<ArrayList<String>> shipBoard) {
+    public void setShipBoard(ArrayList<String> shipBoard) {
         ShipBoard.shipBoard = shipBoard;
     }
-
 }
