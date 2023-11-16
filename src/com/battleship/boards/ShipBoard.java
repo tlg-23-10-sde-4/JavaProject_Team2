@@ -24,37 +24,24 @@ public class ShipBoard {
     }
 
     // I think a switch case will work best for this along with a ternary in each case
-    public static boolean isValidPlacement(ArrayList<String> location, boolean isHorizontal, ShipType shipType){
+    //TODO: for/each through the ship board to check if there are duplicates
+    public static boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
-        String first = location.get(0);
-        String second = location.get(1);
-        int shipLength = shipType.getSize();
-        if (isHorizontal){
-            //TODO implement this thought
-            // first <= f for aircraft carrier
-            // first <= g for battleship
-            // first <= h for destroyer and sub
-            // first <= i for small ship
-        }
-        else {
-            //TODO implement this
-            // second <= 6 for aircraft carrier
-            // second <= 7 for battleship
-            // second <= 8 for destroyer and sub
-            // second <= 9 for small ship
+        for (String grid : location) {
+            for (ArrayList<String> boat : shipBoard) {
+                if (boat.contains(grid)) {
+                    System.out.println("That ships grid causes a collision with another one of your ships! Please choose a new grid.");
+                    result = false;
+                }
+                result = true;
+            }
         }
         return result;
     }
 
-    // This may need some rework
+    // TODO: pass the given location array from player into the ship board
     public static void placeShip(ShipType ship, ArrayList<String> location) {
-        // TODO implement this
-        boolean isHorizontal = false;
-        ShipType shipType = null;
-        // verifies ship is valid before
-        if (isValidPlacement(location, isHorizontal, shipType)){
-            shipBoard.add(location);
-        }
+
     }
 
     //TODO implement
