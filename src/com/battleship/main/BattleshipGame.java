@@ -9,24 +9,56 @@ import java.util.Scanner;
 
 public class BattleshipGame {
 
-    private final Player player;
-    private final boolean gameOver = ShipBoard.allShipsSunk();
+    private final Player player1;
+    private final Player player2;
+    private final Scanner scanner;
 
     public BattleshipGame() {
-
-        player = new Player();
+        player1 = new Player("Player 1");
+        player2 = new Player("Player 2");
+        scanner = new Scanner(System.in);
     }
 
     public void startGame() {
-        Scanner scanner = new Scanner(System.in);
-        player.placeShips(); // Player places their ships
+        System.out.println("Player 1, place your ships:");
+        player1.placeShips(scanner);
 
-        while (!gameOver) {
-            String impact = player.takeTurn(); // Player takes a turn to fire
+        System.out.println("Player 2, place your ships:");
+        player2.placeShips(scanner);
 
+        while (!player1.hasLost() && !player2.hasLost()) {
+            System.out.println("Player 1's turn to fire:");
+            player1.takeTurn(scanner);
+
+            if (player2.hasLost()) {
+                System.out.println("Player 1 wins!");
+                break;
+            }
+
+            System.out.println("Player 2's turn to fire:");
+            player2.takeTurn(scanner);
+
+            if (player1.hasLost()) {
+                System.out.println("Player 2 wins!");
+                break;
+            }
         }
+        scanner.close();
+    }
 
-        System.out.println("Game Over! All ships have been sunk.");
-        scanner.close(); // Close scanner
+    private void placeShipsForPlayers() {
+        System.out.println("Player 1, place your ships:");
+        player1.placeShips(scanner);
+        player1.getShipBoard().printBoard(); // TODO: implement printBoard() method in ShipBoard()
+
+        System.out.println("Player 2, place your ships:");
+        player2.placeShips(scanner);
+        player2.getShipBoard().printBoard(); // TODO: implement printBoard() method in FiringBoard()
+    }
+
+    private void takeTurn(Player currentPlayer, Player opponent) {
+        System.out.println(currentPlayer.getFleetName() + " 's turn to fire:");
+        currentPlayer.takeTurn(scanner);
+        opponent.getShipBoard().printBoard(); // shows the opponent board after the shot
     }
 }
