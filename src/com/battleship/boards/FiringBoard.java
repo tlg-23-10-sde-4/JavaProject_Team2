@@ -31,7 +31,7 @@ public class FiringBoard {
         }
     }
     public void impact() {
-        for (ArrayList<String> boat : ShipBoard.getShipBoard()){
+        for (String boat : ShipBoard.getShipBoard()){
             if (boat.contains(getAiming())) {
                 firingBoardHits.add(getAiming());
                 System.out.println("That round hit a ship!" + getAiming());
@@ -42,12 +42,17 @@ public class FiringBoard {
             }
         }
     }
+
     //TODO: write a "sink()" in ship board, and delete an arraylist once the list contains null or length 0.
     public void sink() {
         for (String hit : getFiringBoardHits()) {
-            for (ArrayList<String> boat : ShipBoard.getShipBoard())
+            for (String boat : ShipBoard.getShipBoard())
                 boat.remove(hit);
         }
+    }
+
+    //TODO implement a way to show the board
+    public void printBoard() {
     }
 
     //ACCESSOR METHODS

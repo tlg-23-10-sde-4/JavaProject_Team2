@@ -35,22 +35,23 @@ public class Player {
             String shipPlacement;
             boolean isHorizontal;
 
-            do {
-                System.out.println("Enter the position you want "+ ship.getName() +" (e.g., C3): ");
-                try {
-                    shipPlacement = scanner.next();
-                    shipPlacement = shipPlacement.trim();
 
+            System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
+            shipPlacement = scanner.next();
+            System.out.println("Ship horizontal? (true/false)");
+            isHorizontal = scanner.nextBoolean();
 
-                } catch (){}
-                System.out.println("Ship horizontal? (true/false)");
-                isHorizontal = scanner.nextBoolean();
-            } while (!ShipBoard.isValidPlacement(shipPlacement, isHorizontal, ship));
+            while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipPlacement, isHorizontal, ship)) {
+                System.out.println("That was either an invalid sequence or it won't fit in that " +
+                        "location, valid sequence = A9. first being A-J and second being 0-9");
+                shipPlacement = scanner.next();
+                shipPlacement = shipPlacement.trim();
+            }
 
-            ShipBoard.placeShip(ship);
+            ShipBoard.placeShip(ship, shipPlacement);
         }
     }
-    // TODO add takeTurn method
+
     public String takeTurn(Scanner scanner){
 
         System.out.println(getFleetName()+ " enter your guess (e.g., B7): ");
