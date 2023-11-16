@@ -2,8 +2,10 @@ package com.battleship.player;
 
 import com.battleship.boards.FiringBoard;
 import com.battleship.boards.ShipBoard; //ShipBoard needs to be public
+import com.battleship.ship.Ship;
 import com.battleship.ship.ShipType; //Ship and shiptype need to be in a package
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -35,20 +37,22 @@ public class Player {
             String shipPlacement;
             boolean isHorizontal;
 
-
             System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
             shipPlacement = scanner.next();
             System.out.println("Ship horizontal? (true/false)");
             isHorizontal = scanner.nextBoolean();
+            ArrayList<String> shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
 
-            while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipPlacement, isHorizontal, ship)) {
+            while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipGenerated, isHorizontal, ship)) {
                 System.out.println("That was either an invalid sequence or it won't fit in that " +
                         "location, valid sequence = A9. first being A-J and second being 0-9");
                 shipPlacement = scanner.next();
                 shipPlacement = shipPlacement.trim();
+                shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
             }
 
-            ShipBoard.placeShip(ship, shipPlacement);
+
+            ShipBoard.placeShip(ship, shipGenerated);
         }
     }
 
