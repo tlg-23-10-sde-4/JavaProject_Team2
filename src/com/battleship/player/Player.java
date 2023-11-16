@@ -43,7 +43,7 @@ public class Player {
             isHorizontal = scanner.nextBoolean();
             ArrayList<String> shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
 
-            while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipGenerated, isHorizontal, ship)) {
+            while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipGenerated)) {
                 System.out.println("That was either an invalid sequence or it won't fit in that " +
                         "location, valid sequence = A9. first being A-J and second being 0-9");
                 shipPlacement = scanner.next();
