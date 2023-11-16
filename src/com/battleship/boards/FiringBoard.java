@@ -1,7 +1,7 @@
 package com.battleship.boards;
 
 import java.util.ArrayList;
-import com.battleship.boards.ShipBoard.*;
+
 public class FiringBoard {
 
 //FIELDS
@@ -19,27 +19,35 @@ public class FiringBoard {
     }
 
     //METHODS
-    public void fire() {
+    public boolean fire() {
+        boolean validShot = false;
+        if (fireRecord.isEmpty()) {
+            fireRecord.add(takeTurn());
+            validShot = true;
+        }
         for (String shot : fireRecord) {
-            if (getAiming().equals(shot)) {
+            if (takeTurn().equals(shot)) {
                 System.out.println("That grid has already been hit!");
+                validShot = false;
             }
             else {
-                fireRecord.add(getAiming());
+                fireRecord.add(takeTurn());
                 impact();
+                validShot = true;
             }
         }
+        return validShot;
     }
     private void impact() {
         for (ArrayList<String> boat : ShipBoard.getShipBoard()){
-            if (boat.contains(getAiming())) {
-                firingBoardHits.add("X-" + getAiming());
-                System.out.println("That round hit a ship!" + getAiming());
+            if (boat.contains(takeTurn())) {
+                firingBoardHits.add("X-" + takeTurn());
+                System.out.println("That round hit a ship!" + takeTurn());
                 hit();
             }
             else {
-                firingBoardMisses.add("O-" + getAiming());
-                System.out.println("That round hit water." + getAiming());
+                fireRecord.add("O-" + takeTurn());
+                System.out.println("That round hit water." + takeTurn());
             }
         }
     }
@@ -80,12 +88,8 @@ public class FiringBoard {
         this.firingBoardMisses = firingBoardMisses;
     }
 
-    public String getAiming() {
+    public String takeTurn() {
         return aiming;
-    }
-
-    public void setAiming(String aiming) {
-        this.aiming = aiming;
     }
 
     //HELPERS
