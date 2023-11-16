@@ -18,7 +18,6 @@ public class FiringBoard {
     public FiringBoard(int boardSize) {
     }
 
-
     //METHODS
     public void fire() {
         for (String shot : fireRecord) {
@@ -27,32 +26,34 @@ public class FiringBoard {
             }
             else {
                 fireRecord.add(getAiming());
+                impact();
             }
         }
     }
-    public void impact() {
+    private void impact() {
         for (ArrayList<String> boat : ShipBoard.getShipBoard()){
             if (boat.contains(getAiming())) {
-                firingBoardHits.add(getAiming());
+                firingBoardHits.add("X-" + getAiming());
                 System.out.println("That round hit a ship!" + getAiming());
+                hit();
             }
             else {
-                firingBoardMisses.add(getAiming());
+                firingBoardMisses.add("O-" + getAiming());
                 System.out.println("That round hit water." + getAiming());
             }
         }
     }
 
     //TODO: write a "sink()" in ship board, and delete an arraylist once the list contains null or length 0.
-    public void hit() {
+    private void hit() {
         for (String hit : getFiringBoardHits()) {
             for (ArrayList<String> boat : ShipBoard.getShipBoard())
                 boat.remove(hit);
         }
     }
 
-    //TODO implement a way to show the board
     public void printBoard() {
+        System.out.println(fireRecord);
     }
 
     //ACCESSOR METHODS

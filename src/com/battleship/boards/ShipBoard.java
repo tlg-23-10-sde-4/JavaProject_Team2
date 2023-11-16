@@ -14,6 +14,15 @@ public class ShipBoard {
     public ShipBoard(int boardSize) { // gage - create a constructor
     }
 
+    //METHODS
+    public void sink() {
+        for (ArrayList<String> boat : shipBoard) {
+            if (boat.size()== 0) {
+                shipBoard.remove(boat);
+            }
+        }
+    }
+
     // I think a switch case will work best for this along with a ternary in each case
     public static boolean isValidPlacement(ArrayList<String> location, boolean isHorizontal, ShipType shipType){
         boolean result = false;
@@ -50,7 +59,7 @@ public class ShipBoard {
 
     //TODO implement
     public boolean allShipsSunk() {
-        return false;
+        return shipBoard.size() == 0;
     }
 
     //ACCESSORS
