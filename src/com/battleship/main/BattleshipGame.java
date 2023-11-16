@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BattleshipGame {
-    private ShipBoard shipBoard; // size of the game board
-    private FiringBoard firingBoard; // manages firing attempts
-    private Player player;
+    private final ShipBoard shipBoard; // size of the game board
+    private final FiringBoard firingBoard; // manages firing attempts
+    private final Player player;
     private boolean gameOver = false;
 
     public BattleshipGame() {
@@ -20,18 +20,11 @@ public class BattleshipGame {
 
     public void startGame() {
         Scanner scanner = new Scanner(System.in);
-        player.placeShips(scanner, shipBoard); // Player places their ships
+        player.placeShips(); // Player places their ships
 
         while (!gameOver) {
-            String impact = player.takeTurn(scanner); // Player takes a turn to fire
+            String impact = player.takeTurn(); // Player takes a turn to fire
             boolean hit = shipBoard.isValidPlacement(parseImpact(impact)); // Check if the fire hit a ship // TODO: change placeholder fireAt() to current shipBoard method
-
-            if (hit) {
-                shipBoard.sink(); // sink() updates the ship board after a hit
-            }
-            // fire() combined with impact() record the shot
-            firingBoard.setAiming(impact);
-            firingBoard.fire();
 
             if (hit) {
                 System.out.println("Hit!");
