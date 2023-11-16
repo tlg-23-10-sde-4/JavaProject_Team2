@@ -17,8 +17,6 @@ public class ShipBoard {
         }
     }
 
-
-
     //METHODS
     public void sink() {
         for (ArrayList<String> boat : shipBoard) {
@@ -34,6 +32,7 @@ public class ShipBoard {
         boolean result = false;
         for (String grid : location) {
             if (shipBoard.isEmpty()) {
+                shipBoard.add(location);
                 result = true;
             }
             else {
