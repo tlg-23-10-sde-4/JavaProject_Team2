@@ -10,9 +10,14 @@ public class ShipBoard {
 
     //FIELDS
     public static ArrayList<ArrayList<String>> shipBoard;
-
-    public ShipBoard(int boardSize) { // gage - create a constructor
+    //CONSTRUCTOR
+    public ShipBoard(ArrayList<String> ship) {
+        if (isValidPlacement(ship)) {
+            shipBoard.add(ship);
+        }
     }
+
+
 
     //METHODS
     public void sink() {
@@ -28,20 +33,27 @@ public class ShipBoard {
     public static boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
         for (String grid : location) {
-            for (ArrayList<String> boat : shipBoard) {
-                if (boat.contains(grid)) {
-                    System.out.println("That ships grid causes a collision with another one of your ships! Please choose a new grid.");
-                    result = false;
-                }
+            if (shipBoard.isEmpty()) {
                 result = true;
+            }
+            else {
+                for (ArrayList<String> boat : shipBoard) {
+                    if (boat.contains(grid)) {
+                        System.out.println("That ships grid causes a collision with another one of your ships! Please choose a new grid.");
+                        result = false;
+                    }
+                    result = true;
+                }
             }
         }
         return result;
     }
 
     // TODO: pass the given location array from player into the ship board
-    public static void placeShip(ShipType ship, ArrayList<String> location) {
-
+    public static void placeShip(ArrayList<String> location) {
+        if (isValidPlacement(location)) {
+            shipBoard.add(location);
+        }
     }
 
     //TODO implement

@@ -44,7 +44,6 @@ public class FiringBoard {
         }
     }
 
-    //TODO: write a "sink()" in ship board, and delete an arraylist once the list contains null or length 0.
     private void hit() {
         for (String hit : getFiringBoardHits()) {
             for (ArrayList<String> boat : ShipBoard.getShipBoard())
