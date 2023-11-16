@@ -1,9 +1,9 @@
 package com.battleship.player;
 
 import com.battleship.boards.FiringBoard;
-import com.battleship.boards.ShipBoard; //ShipBoard needs to be public
+import com.battleship.boards.ShipBoard;
 import com.battleship.ship.Ship;
-import com.battleship.ship.ShipType; //Ship and shiptype need to be in a package
+import com.battleship.ship.ShipType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -30,7 +30,8 @@ public class Player {
         this.fleetName = fleetName;
     }
 
-    public void placeShips(Scanner scanner, ShipBoard shipBoard){
+    public void placeShips(){
+        Scanner scanner = new Scanner(System.in);
 
         for (ShipType ship : ShipType.values()){
             System.out.println("Placing ship: " + ship.getName() + "; size: " + ship.getSize());
@@ -46,20 +47,19 @@ public class Player {
             while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipGenerated)) {
                 System.out.println("That was either an invalid sequence or it won't fit in that " +
                         "location, valid sequence = A9. first being A-J and second being 0-9");
+                System.out.println("Place ship " + ship.getName());
                 shipPlacement = scanner.next();
                 shipPlacement = shipPlacement.trim();
                 shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
             }
-
-
             ShipBoard.placeShip(ship, shipGenerated);
         }
     }
 
-    public String takeTurn(Scanner scanner){
+    public String takeTurn(){
 
         System.out.println(getFleetName()+ " enter your guess (e.g., B7): ");
-        scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String guess = scanner.next().toUpperCase();
 
         while (!guess.matches(pattern)){
