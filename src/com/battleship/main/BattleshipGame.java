@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BattleshipGame {
-    private Player player1;
-    private Player player2;
-    private Scanner scanner;
+    private final Player player1;
+    private final Player player2;
 
-    public void BattleshipGame() {
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
-        scanner = new Scanner(System.in);
+    public BattleshipGame() {
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public void startGame() {
@@ -26,24 +24,23 @@ public class BattleshipGame {
     // ship placement management
     private void placeShipsForPlayers() {
         System.out.println("Player 1, place your ships:");
-        player1.placeShips(scanner); // scanner used to read user input from the console
-        player1.getShipBoard().printBoard(); // TODO: implement printBoard() method in ShipBoard()
+        player1.placeShips(new ShipBoard());
 
         System.out.println("Player 2, place your ships:");
-        player2.placeShips(scanner);
-        player2.getShipBoard().printBoard(); // TODO: implement printBoard() method in FiringBoard()
+        player2.placeShips(new ShipBoard());
     }
 
     // game round management
     private void playRounds() {
-        while (!player1.hasLost() && !player2.hasLost()) { // alternate turns until a 'player' loses
+        while (true) { // alternate turns until a 'player' loses
             System.out.println("Player 1's turn to fire:");
-            player1.takeTurn(scanner);
+            takeTurn();
             if (player2.hasLost()) {
                 System.out.println("Player 1 wins!");
                 break;
             }
 
+            takeTurn();
             if (player1.hasLost()) {
                 System.out.println("Player 2 wins!");
                 break;
@@ -53,9 +50,16 @@ public class BattleshipGame {
 
     // player turn management
     private void takeTurn(Player currentPlayer, Player opponent) {
-        System.out.println(currentPlayer.getFleetName() + " 's turn to fire:");
-        currentPlayer.takeTurn(scanner);
-        opponent.getShipBoard().printBoard(); // shows the opponent board after the shot
+        System.out.println("Player's turn to fire: ");
+        String guess = currentPlayer.takeTurn();
+
+        // display current board
+        currentPlayer.getFiringBoard().printBoard();
+        opponent.getShipBoard().printBoard();
+
+        if (opponent.hasLost()) { // checks for end of game
+            System.out.println("Player has won the game!");
+        }
     }
 
     // main method
