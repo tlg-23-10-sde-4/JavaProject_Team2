@@ -13,11 +13,10 @@ public class Player {
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
     private static final Scanner scanner = new Scanner(System.in);
     public static String guess = takeTurn();
-    private static final ShipBoard shipBoard = new ShipBoard();
-
 
     public Player() {
         FiringBoard firingBoard = new FiringBoard();
+        ShipBoard shipBoard = new ShipBoard();
     }
 
     public void placeShips(ShipBoard shipBoard) {
@@ -61,13 +60,5 @@ public class Player {
 
     public static String getGuess() {
         return guess;
-    }
-
-    public ShipBoard getShipBoard() {
-        return shipBoard;
-    }
-
-    public boolean hasLost() {
-        return shipBoard.allShipsSunk();
     }
 }
