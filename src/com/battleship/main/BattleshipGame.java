@@ -32,7 +32,7 @@ public class BattleshipGame {
     }
 
     // game round management
-    private void playRounds() {
+    public void playRounds() {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) { // alternate turns until a 'player' loses
             System.out.println("Player 1's turn to fire:");
             takeTurns(player1, player2);
