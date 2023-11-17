@@ -22,12 +22,15 @@ public class ShipBoard {
     }
 
     //METHODS
-    public void sink() {
+    public boolean sink() {
+        boolean result = false;
         for (ArrayList<String> boat : shipBoard) {
             if (boat.size()== 0) {
                 shipBoard.remove(boat);
+                result = true;
             }
         }
+        return result;
     }
 
     public boolean isValidPlacement(ArrayList<String> location) {

@@ -36,7 +36,7 @@ public class FiringBoard {
         }
         return validShot;
     }
-    private boolean impact() {
+    public boolean impact() {
         boolean result = false;
         for (ArrayList<String> boat : ShipBoard.getShipBoard()){
             if (boat.contains(gridAim())) {
