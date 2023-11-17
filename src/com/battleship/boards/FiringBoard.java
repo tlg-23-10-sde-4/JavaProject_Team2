@@ -1,5 +1,7 @@
 package com.battleship.boards;
 
+import com.battleship.player.Player;
+
 import java.util.ArrayList;
 
 public class FiringBoard {
@@ -18,34 +20,38 @@ public class FiringBoard {
         boolean validShot = false;
         if (fireRecord == null) {
             fireRecord = new ArrayList<>();
-            fireRecord.add(takeTurn());
+            fireRecord.add(gridAim());
             validShot = true;
         }
         for (String shot : fireRecord) {
-            if (takeTurn().equals(shot)) {
+            if (gridAim().equals(shot)) {
                 System.out.println("That grid has already been hit!");
                 validShot = false;
             }
             else {
-                fireRecord.add(takeTurn());
+                fireRecord.add(gridAim());
                 impact();
                 validShot = true;
             }
         }
         return validShot;
     }
-    private void impact() {
+    private boolean impact() {
+        boolean result = false;
         for (ArrayList<String> boat : ShipBoard.getShipBoard()){
-            if (boat.contains(takeTurn())) {
-                firingBoardHits.add("X-" + takeTurn());
-                System.out.println("That round hit a ship!" + takeTurn());
+            if (boat.contains(gridAim())) {
+                firingBoardHits.add("X-" + gridAim());
+                System.out.println("That round hit a ship!" + gridAim());
                 hit();
+                result = true;
             }
             else {
-                fireRecord.add("O-" + takeTurn());
-                System.out.println("That round hit water." + takeTurn());
+                fireRecord.add("O-" + gridAim());
+                System.out.println("That round hit water." + gridAim());
+                result = false;
             }
         }
+        return result;
     }
 
     private void hit() {
@@ -84,8 +90,8 @@ public class FiringBoard {
         this.firingBoardMisses = firingBoardMisses;
     }
 
-    public String takeTurn() {
-        return aiming;
+    public String gridAim() {
+        return Player.guess;
     }
 
     //HELPERS

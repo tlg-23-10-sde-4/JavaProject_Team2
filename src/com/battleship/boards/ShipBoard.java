@@ -10,7 +10,7 @@ public class ShipBoard {
 
     //FIELDS
     public static ArrayList<ArrayList<String>> shipBoard;
-    public static ArrayList<String> loadingDock;
+
     //CONSTRUCTOR
     public static void placeShip(ArrayList<String> location) {
         if (isValidPlacement(location)) {
@@ -30,7 +30,6 @@ public class ShipBoard {
         }
     }
 
-    // I think a switch case will work best for this along with a ternary in each case
     public static boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
         if (shipBoard == null) {
@@ -62,5 +61,11 @@ public class ShipBoard {
 
     public void setShipBoard(ArrayList<ArrayList<String>> shipBoard) {
         ShipBoard.shipBoard = shipBoard;
+    }
+
+    public static void printBoard() {
+        for (ArrayList<String> boats : shipBoard) {
+            System.out.println(boats);
+        }
     }
 }
