@@ -11,13 +11,15 @@ class PlayerTest {
     public static void main(String[] args) {
         ShipBoard shipBoard = new ShipBoard();
         Player p1 = new Player();
-        p1.placeShips(shipBoard);
-        System.out.println(ShipBoard.getShipBoard());
-    }
+        //p1.placeShips(shipBoard);
+        //System.out.println(ShipBoard.getShipBoard());
+        p1.takeTurn();
+    }}
 
+/*
     @Test
     public void battleShip_shouldRejectString_whenStringFormatInvalid() {
         Player p1 = new Player();
 
     }
-}
+}*/

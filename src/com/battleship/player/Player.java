@@ -1,6 +1,5 @@
 package com.battleship.player;
 
-import com.battleship.boards.FiringBoard;
 import com.battleship.boards.ShipBoard;
 import com.battleship.ship.Ship;
 import com.battleship.ship.ShipType;
@@ -28,7 +27,7 @@ public class Player {
         }
     }
 
-    private boolean isValid(ArrayList<String> ship){
+    private boolean isValidPlacement(ArrayList<String> ship){
         boolean result = false;
         for (String s : ship){
             result = s.matches(PATTERN);
@@ -45,7 +44,7 @@ public class Player {
         isHorizontal = scanner.nextBoolean();
         ArrayList<String> shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
 
-        while (!shipPlacement.matches(PATTERN) || !shipBoard.isValidPlacement(shipGenerated) || !isValid(shipGenerated)){
+        while (!shipPlacement.matches(PATTERN) || !shipBoard.isValidPlacement(shipGenerated) || !isValidPlacement(shipGenerated)){
             System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
             shipPlacement = scanner.next().trim();
             System.out.println("Ship horizontal? (true/false)");
