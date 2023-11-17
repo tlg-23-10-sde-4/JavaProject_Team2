@@ -18,7 +18,7 @@ public class CPUPlayer extends Player{
         this.previousHit = null;
     }
 
-    public String takeTurn(Scanner scanner, FiringBoard firingBoard){
+    public static String takeTurn(FiringBoard firingBoard){
 
         // rule-based shooting strategy
         String guess = null;
