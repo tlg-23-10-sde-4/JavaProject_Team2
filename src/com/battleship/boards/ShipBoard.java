@@ -58,11 +58,11 @@ public class ShipBoard {
     }
 
     public boolean allShipsSunk() {
-        return shipBoard.size() == 0;
+        return (shipBoard == null || shipBoard.size() == 0);
     }
 
     //ACCESSORS
-    public static ArrayList<ArrayList<String>> getShipBoard() {
+    public ArrayList<ArrayList<String>> getShipBoard() {
         return shipBoard;
     }
 

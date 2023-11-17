@@ -1,3 +1,4 @@
+/*
 package com.battleship.boards;
 
 import com.battleship.player.Player;
@@ -21,3 +22,15 @@ public class FiringBoardTest {
 //
 //    }
 }
+
+    public String playerGuess;
+    FiringBoard
+
+    @Test
+    public void fireRecord_shouldAddString_whenStringIsUnique() {
+        playerGuess = "B7";
+
+
+
+    }
+}*/
