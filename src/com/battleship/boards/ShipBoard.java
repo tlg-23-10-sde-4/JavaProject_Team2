@@ -39,11 +39,13 @@ public class ShipBoard {
             for (String grid : location) {
                 for (ArrayList<String> boat : shipBoard) {
                     if (boat.contains(grid)) {
-                        System.out.println("That ships grid causes a collision with another one of your ships!" +
+                        System.out.println("That ship grid causes a collision with " + boat +
                                 " Please choose a new grid.");
                         result = false;
                     }
-                    result = true;
+                    else {
+                        result = true;
+                    }
                 }
             }
         }
