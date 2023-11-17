@@ -14,6 +14,8 @@ public class Player {
     private static final Scanner scanner = new Scanner(System.in);
     public static String guess = takeTurn();
 
+
+
     public Player() {
         FiringBoard firingBoard = new FiringBoard();
         ShipBoard shipBoard = new ShipBoard();
