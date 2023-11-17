@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class ShipBoard {
 
     //FIELDS
-    public static ArrayList<ArrayList<String>> shipBoard;
+    private static ArrayList<ArrayList<String>> shipBoard;
 
     //CONSTRUCTOR
-    public static void placeShip(ArrayList<String> location) {
+    public void placeShip(ArrayList<String> location) {
         if (isValidPlacement(location)) {
             if (shipBoard == null) {
                 shipBoard = new ArrayList<>();
@@ -30,7 +30,7 @@ public class ShipBoard {
         }
     }
 
-    public static boolean isValidPlacement(ArrayList<String> location) {
+    public boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
         if (shipBoard == null) {
             result = true;
@@ -50,7 +50,7 @@ public class ShipBoard {
         return result;
     }
 
-    public static boolean allShipsSunk() {
+    public boolean allShipsSunk() {
         return shipBoard.size() == 0;
     }
 
@@ -59,11 +59,8 @@ public class ShipBoard {
         return shipBoard;
     }
 
-    public void setShipBoard(ArrayList<ArrayList<String>> shipBoard) {
-        ShipBoard.shipBoard = shipBoard;
-    }
 
-    public static void printBoard() {
+    public void printBoard() {
         for (ArrayList<String> boats : shipBoard) {
             System.out.println(boats);
         }

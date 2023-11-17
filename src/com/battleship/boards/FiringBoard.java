@@ -70,10 +70,6 @@ public class FiringBoard {
         return fireRecord;
     }
 
-    public void setFireRecord(ArrayList<String> fireRecord) {
-        FiringBoard.fireRecord = fireRecord;
-    }
-
     public static ArrayList<String> getFiringBoardHits() {
         return firingBoardHits;
     }
@@ -93,6 +89,5 @@ public class FiringBoard {
     public String gridAim() {
         return Player.guess;
     }
-
     //HELPERS
 }
