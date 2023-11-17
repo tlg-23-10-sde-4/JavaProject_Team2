@@ -8,9 +8,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class CPUPlayer extends Player{
-    private Random random;
-    private String previousHit;
-    private final String pattern = "[a-jA-J]{1}[0-9]{1}";
+    private static Random random;
+    private static String previousHit;
+    private static final String pattern = "[a-jA-J]{1}[0-9]{1}";
     private String shot = null;
 
     public CPUPlayer() {
@@ -41,7 +41,7 @@ public class CPUPlayer extends Player{
 
         return guess;
     }
-    private String generateNearbyTarget(String previousHit){
+    private static String generateNearbyTarget(String previousHit){
         String guess = null;
         char row = previousHit.charAt(0);
         char col = previousHit.charAt(1);
