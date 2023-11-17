@@ -16,20 +16,20 @@ public class FiringBoard {
     private String aiming;
 
     //METHODS
-    public boolean fire() {
+    public boolean fire(String aim) {
         boolean validShot = false;
         if (fireRecord == null) {
             fireRecord = new ArrayList<>();
-            fireRecord.add(gridAim());
+            fireRecord.add(aim);
             validShot = true;
         }
         for (String shot : fireRecord) {
-            if (gridAim().equals(shot)) {
+            if (aim.equals(shot)) {
                 System.out.println("That grid has already been hit!");
                 validShot = false;
             }
             else {
-                fireRecord.add(gridAim());
+                fireRecord.add(aim);
                 impact();
                 validShot = true;
             }

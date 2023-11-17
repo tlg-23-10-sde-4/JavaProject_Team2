@@ -55,10 +55,11 @@ public class BattleshipGame {
 
     // player turn management
     private void takeTurn(Player player1, Player player2) {
-        System.out.println(player1.getClass().getName() + " Player's turn to fire: "); // TODO: implement getName() in Player
+        System.out.println(player1.getClass().getName() + " Player's turn to fire: ");
         String guess = player1.takeTurn();
 
         // TODO: handle what happens when player makes guess
+        player1FiringBoard.fire(guess);
 
         // display boards
         player1FiringBoard.printBoard(); // TODO: implement getFiringBoard() in Player
@@ -68,6 +69,30 @@ public class BattleshipGame {
         if (player2Shipboard.allShipsSunk()) {
             System.out.println(player1.getClass().getName() + " has won the game!");
         }
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public ShipBoard getPlayer1Shipboard() {
+        return player1Shipboard;
+    }
+
+    public ShipBoard getPlayer2Shipboard() {
+        return player2Shipboard;
+    }
+
+    public FiringBoard getPlayer1FiringBoard() {
+        return player1FiringBoard;
+    }
+
+    public FiringBoard getPlayer2FiringBoard() {
+        return player2FiringBoard;
     }
 
     // main method

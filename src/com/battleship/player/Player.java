@@ -12,9 +12,7 @@ public class Player {
 
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
     private static final Scanner scanner = new Scanner(System.in);
-    public static String guess = null;
-
-
+    public static String guess;
 
     public Player() {
 //        FiringBoard firingBoard = new FiringBoard();
