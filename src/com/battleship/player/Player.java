@@ -12,7 +12,7 @@ public class Player {
 
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
     private static final Scanner scanner = new Scanner(System.in);
-    public static String guess;
+    public static String guess = takeTurn();
     private static final ShipBoard shipBoard = new ShipBoard();
 
 
@@ -54,7 +54,7 @@ public class Player {
 
         while (!guess.matches(PATTERN)) {
             System.out.println("Invalid coordinate, valid coordinate = A9. first being A-J and second being 0-9");
-            guess = scanner.next();
+            guess = scanner.next().toUpperCase();
         }
         return guess;
     }
