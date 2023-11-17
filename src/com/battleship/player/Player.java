@@ -12,20 +12,21 @@ public class Player {
 
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
     private static final Scanner scanner = new Scanner(System.in);
-    public static String guess = takeTurn();
+    public static String guess = null;
 
 
 
     public Player() {
-        FiringBoard firingBoard = new FiringBoard();
-        ShipBoard shipBoard = new ShipBoard();
+//        FiringBoard firingBoard = new FiringBoard();
+//        ShipBoard shipBoard = new ShipBoard();
     }
 
     public void placeShips(ShipBoard shipBoard) {
 
         for (ShipType ship : ShipType.values()) {
             System.out.println("Placing ship: " + ship.getName() + "; size: " + ship.getSize());
-            String shipPlacement;
+
+            /*String shipPlacement;
             boolean isHorizontal;
 
             System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
@@ -43,13 +44,31 @@ public class Player {
                 shipPlacement = scanner.next();
                 shipPlacement = shipPlacement.trim();
                 shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
-            }
-            ShipBoard.placeShip(shipGenerated);
+            }*/
+            shipBoard.placeShip(generateShip(ship));
         }
     }
 
-    public static String takeTurn() {
+    private ArrayList<String> generateShip(ShipType ship, ShipBoard shipBoard) {
+        String shipPlacement = null;
+        boolean isHorizontal = false;
+        System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
+        shipPlacement = scanner.next().trim();
+        System.out.println("Ship horizontal? (true/false)");
+        isHorizontal = scanner.nextBoolean();
+        ArrayList<String> shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
 
+        while (!shipPlacement.matches(PATTERN) || !shipBoard.isValidPlacement(shipGenerated)){
+            System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
+            shipPlacement = scanner.next().trim();
+            System.out.println("Ship horizontal? (true/false)");
+            isHorizontal = scanner.nextBoolean();
+            shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
+        }
+        return shipGenerated;
+    }
+
+    public String takeTurn() {
         System.out.println(" enter your firing coordinate (e.g., B7): ");
         guess = scanner.next().toUpperCase();
 

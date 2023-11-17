@@ -9,8 +9,9 @@ import java.util.Scanner;
 class PlayerTest {
 
     public static void main(String[] args) {
+        ShipBoard shipBoard = new ShipBoard();
         Player p1 = new Player();
-        p1.placeShips();
+        p1.placeShips(shipBoard);
         System.out.println(ShipBoard.getShipBoard());
     }
 
