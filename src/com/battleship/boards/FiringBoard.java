@@ -5,18 +5,13 @@ import java.util.ArrayList;
 public class FiringBoard {
 
 //FIELDS
-    private ArrayList<String> fireRecord;
+    private static ArrayList<String> fireRecord;
 
-    private ArrayList<String> firingBoardHits;
+    private static ArrayList<String> firingBoardHits;
 
     private ArrayList<String> firingBoardMisses;
 
     private String aiming;
-
-    //CONSTRUCTOR
-
-    public FiringBoard(ArrayList<String> boardSize) {
-    }
 
     //METHODS
     public boolean fire() {
@@ -70,15 +65,15 @@ public class FiringBoard {
     }
 
     public void setFireRecord(ArrayList<String> fireRecord) {
-        this.fireRecord = fireRecord;
+        FiringBoard.fireRecord = fireRecord;
     }
 
-    public ArrayList<String> getFiringBoardHits() {
+    public static ArrayList<String> getFiringBoardHits() {
         return firingBoardHits;
     }
 
-    public void setFiringBoardHits(ArrayList<String> firingBoardHits) {
-        this.firingBoardHits = firingBoardHits;
+    public static void setFiringBoardHits(ArrayList<String> firingBoardHits) {
+        FiringBoard.firingBoardHits = firingBoardHits;
     }
 
     public ArrayList<String> getFiringBoardMisses() {
