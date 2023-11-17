@@ -47,7 +47,7 @@ public class Player {
         }
     }
 
-    public static String takeTurn(FiringBoard firingBoard) {
+    public static String takeTurn() {
 
         System.out.println(" enter your firing coordinate (e.g., B7): ");
         guess = scanner.next().toUpperCase();
@@ -56,6 +56,10 @@ public class Player {
             System.out.println("Invalid coordinate, valid coordinate = A9. first being A-J and second being 0-9");
             guess = scanner.next();
         }
+        return guess;
+    }
+
+    public static String getGuess() {
         return guess;
     }
 
