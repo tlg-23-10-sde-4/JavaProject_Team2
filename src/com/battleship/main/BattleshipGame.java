@@ -12,8 +12,8 @@ public class BattleshipGame {
     private final Player player2;
 
     public BattleshipGame() {
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player(new ShipBoard(), new FiringBoard()); // TODO: update constructor in Player
+        player2 = new Player(new ShipBoard(), new FiringBoard());
     }
 
     public void startGame() {
@@ -24,24 +24,24 @@ public class BattleshipGame {
     // ship placement management
     private void placeShipsForPlayers() {
         System.out.println("Player 1, place your ships:");
-        player1.placeShips(new ShipBoard());
+        player1.placeShips(player1.getShipBoard()); // TODO: getShipBoard() implement method in Player
 
         System.out.println("Player 2, place your ships:");
-        player2.placeShips(new ShipBoard());
+        player2.placeShips(player2.getShipBoard());
     }
 
     // game round management
     private void playRounds() {
-        while (true) { // alternate turns until a 'player' loses
+        while (!player1.getShipBoard().allShipsSunk() && !player2.getShipBoard().allShipsSunk()) { // alternate turns until a 'player' loses
             System.out.println("Player 1's turn to fire:");
-            takeTurn();
-            if (player2.hasLost()) {
+            takeTurn(player1, player2);
+            if (player2.getShipBoard().allShipsSunk()) {
                 System.out.println("Player 1 wins!");
                 break;
             }
 
-            takeTurn();
-            if (player1.hasLost()) {
+            takeTurn(player2, player1);
+            if (player1.getShipBoard().allShipsSunk()) {
                 System.out.println("Player 2 wins!");
                 break;
             }
@@ -50,15 +50,18 @@ public class BattleshipGame {
 
     // player turn management
     private void takeTurn(Player currentPlayer, Player opponent) {
-        System.out.println("Player's turn to fire: ");
+        System.out.println(currentPlayer.getName() + "Player's turn to fire: "); // TODO: implement getName() in Player
         String guess = currentPlayer.takeTurn();
 
-        // display current board
-        currentPlayer.getFiringBoard().printBoard();
+        // TODO: handle what happens when player makes guess
+
+        // display boards
+        currentPlayer.getFiringBoard().printBoard(); // TODO: implement getFiringBoard() in Player
         opponent.getShipBoard().printBoard();
 
-        if (opponent.hasLost()) { // checks for end of game
-            System.out.println("Player has won the game!");
+        // check if opponent lost
+        if (opponent.getShipBoard().allShipsSunk()) {
+            System.out.println(currentPlayer.getName() + " has won the game!");
         }
     }
 
