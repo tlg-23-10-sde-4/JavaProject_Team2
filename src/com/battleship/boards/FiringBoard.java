@@ -16,7 +16,7 @@ public class FiringBoard {
     private String aiming;
 
     //METHODS
-    public boolean fire(String aim) {
+    public void fire(String aim) {
         boolean validShot = false;
         if (fireRecord == null) {
             fireRecord = new ArrayList<>();
@@ -34,7 +34,6 @@ public class FiringBoard {
                 validShot = true;
             }
         }
-        return validShot;
     }
     public boolean impact() {
         boolean result = false;

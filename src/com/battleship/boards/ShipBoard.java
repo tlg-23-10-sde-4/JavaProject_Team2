@@ -10,7 +10,7 @@ public class ShipBoard {
 
     //FIELDS
     private static ArrayList<ArrayList<String>> shipBoard;
-
+    private ArrayList<String> shipLocation;
     //CONSTRUCTOR
     public void placeShip(ArrayList<String> location) {
         if (isValidPlacement(location)) {
@@ -35,21 +35,23 @@ public class ShipBoard {
 
     public boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
-        if (shipBoard == null) {
+        if (shipLocation == null) {
+            shipLocation = new ArrayList<>();
             result = true;
         }
         else {
+
             for (String grid : location) {
-                for (ArrayList<String> boat : shipBoard) {
-                    if (boat.contains(grid)) {
-                        System.out.println("That ship grid causes a collision with " + boat +
-                                " Please choose a new grid.");
-                        result = false;
-                    }
-                    else {
-                        result = true;
-                    }
+                if (shipLocation.contains(grid)) {
+                    System.out.println("That ship grid causes a collision with a boat, \n Please choose a new grid.");
+                    result = false;
                 }
+                else {
+                    shipLocation.add(grid);
+                    //shipBoard.add(location);
+                    result = true;
+                }
+
             }
         }
         return result;
