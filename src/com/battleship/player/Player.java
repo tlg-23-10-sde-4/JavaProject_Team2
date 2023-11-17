@@ -29,15 +29,11 @@ public class Player {
             shipBoard.placeShip(generateShip(ship, shipBoard));
         }
     }
+
     private boolean isValid(ArrayList<String> ship){
         boolean result = false;
         for (String s : ship){
-            if (s.matches(PATTERN)){
-                result = true;
-            }
-            else {
-                result = false;
-            }
+            result = s.matches(PATTERN);
         }
         return result;
     }

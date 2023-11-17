@@ -1,6 +1,7 @@
 package com.battleship.player;
 
 import com.battleship.boards.FiringBoard;
+import com.battleship.boards.ShipBoard;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -14,35 +15,38 @@ public class CPUPlayer extends Player{
     private String shot = null;
 
     public CPUPlayer() {
-        this.random = new Random();
-        this.previousHit = null;
+        random = new Random();
     }
 
-    public static String takeTurn(FiringBoard firingBoard){
+    public String takeTurn(FiringBoard firingBoard, ShipBoard shipBoard){
 
         // rule-based shooting strategy
-        String guess = null;
+        String guess;
 
         // Rule 1: If there was a hit, target nearby locations
         if (previousHit != null){
             guess = generateNearbyTarget(previousHit);
         }
 
-        // Rule 1: On the first turn or no hits, shoot randomly
+        // Rule 2: On the first turn or no hits, shoot randomly
         else{
             do {
-                char letter = (char) (random.nextInt(10) + 'a');
-                char number = (char) (random.nextInt(10));
+                char letter = (char) (random.nextInt(9) + ('a'));
+                char number = (char) (random.nextInt(9));
                 String s1 = String.valueOf(letter);
-                String s2 = String.valueOf(number);
+                String s2 = String.valueOf(number+1);
                 guess = s1 + s2;
             } while (!guess.matches(pattern));
+        }
+        if (firingBoard.impact() && !shipBoard.sink()){
+            previousHit = guess;
         }
 
         return guess;
     }
-    private static String generateNearbyTarget(String previousHit){
-        String guess = null;
+
+    private String generateNearbyTarget(String previousHit){
+        String guess;
         char row = previousHit.charAt(0);
         char col = previousHit.charAt(1);
 
@@ -65,6 +69,7 @@ public class CPUPlayer extends Player{
                 return previousHit;
 
         }
+
         return guess;
     }
 
