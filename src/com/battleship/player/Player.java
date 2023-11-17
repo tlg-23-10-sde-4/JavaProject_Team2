@@ -7,7 +7,6 @@ import com.battleship.ship.ShipType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Player {
 
@@ -22,7 +21,7 @@ public class Player {
         setFleetName(name);
     }
 
-    public void placeShips(Scanner scanner) {
+    public void placeShips(Scanner scanner, ShipBoard shipBoard) {
 
         for (ShipType ship : ShipType.values()) {
             System.out.println("Placing ship: " + ship.getName() + "; size: " + ship.getSize());
@@ -35,6 +34,8 @@ public class Player {
             isHorizontal = scanner.nextBoolean();
             ArrayList<String> shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
 
+            //TODO make invalid ship placements still have a chance to get placed and not just skipped
+            // probably split this into more than one method i.e., isHorizontal(), placeShip()
             while (!shipPlacement.matches(pattern) || !ShipBoard.isValidPlacement(shipGenerated)) {
                 System.out.println("That was either an invalid coordinate or it won't fit in that " +
                         "location, valid coordinate = A9. first being A-J and second being 0-9");
@@ -47,7 +48,7 @@ public class Player {
         }
     }
 
-    public String takeTurn(Scanner scanner) {
+    public String takeTurn(Scanner scanner, FiringBoard firingBoard) {
 
         System.out.println(getFleetName()+ " enter your firing coordinate (e.g., B7): ");
         String guess = scanner.next().toUpperCase();
