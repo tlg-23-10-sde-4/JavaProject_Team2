@@ -16,7 +16,7 @@ public class FiringBoard {
     private String aiming;
 
     //METHODS
-    public void fire(String aim) {
+    public void fire(String aim, ShipBoard shipBoard) {
         boolean validShot = false;
         if (fireRecord == null) {
             fireRecord = new ArrayList<>();
@@ -30,18 +30,18 @@ public class FiringBoard {
             }
             else {
                 fireRecord.add(aim);
-                impact();
+                impact(shipBoard);
                 validShot = true;
             }
         }
     }
-    public boolean impact() {
+    public boolean impact(ShipBoard shipBoard) {
         boolean result = false;
-        for (ArrayList<String> boat : ShipBoard.getShipBoard()){
+        for (ArrayList<String> boat : shipBoard.getShipBoard()){
             if (boat.contains(gridAim())) {
                 firingBoardHits.add("X-" + gridAim());
                 System.out.println("That round hit a ship!" + gridAim());
-                hit();
+                hit(shipBoard);
                 result = true;
             }
             else {
@@ -53,9 +53,9 @@ public class FiringBoard {
         return result;
     }
 
-    private void hit() {
+    private void hit(ShipBoard shipBoard) {
         for (String hit : getFiringBoardHits()) {
-            for (ArrayList<String> boat : ShipBoard.getShipBoard())
+            for (ArrayList<String> boat : shipBoard.getShipBoard())
                 boat.remove(hit);
         }
     }

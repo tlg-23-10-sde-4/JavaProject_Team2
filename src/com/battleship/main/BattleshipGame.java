@@ -51,36 +51,12 @@ public class BattleshipGame {
         System.out.println(player1.getClass().getName() + " Player's turn to fire: ");
 
         player1FiringBoard.printBoard();
-        player1FiringBoard.fire(player1.takeTurn());
+        player1FiringBoard.fire(player1.takeTurn(), player2Shipboard);
         player2Shipboard.printBoard();
 
         player2FiringBoard.printBoard();
-        player2FiringBoard.fire(player2.takeTurn());
+        player2FiringBoard.fire(player2.takeTurn(), player1Shipboard);
         player1Shipboard.printBoard();
-    }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public ShipBoard getPlayer1Shipboard() {
-        return player1Shipboard;
-    }
-
-    public ShipBoard getPlayer2Shipboard() {
-        return player2Shipboard;
-    }
-
-    public FiringBoard getPlayer1FiringBoard() {
-        return player1FiringBoard;
-    }
-
-    public FiringBoard getPlayer2FiringBoard() {
-        return player2FiringBoard;
     }
 
     // main method

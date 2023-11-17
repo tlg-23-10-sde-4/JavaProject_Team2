@@ -1,8 +1,6 @@
-package com.battleship.game;
+package com.battleship.main;
 
 import com.battleship.boards.ShipBoard;
-import com.battleship.main.BattleshipGame;
-import com.battleship.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,20 +8,25 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 class BattleshipGameTest {
+
     private BattleshipGame game;
     private ShipBoard player1Shipboard;
     private ShipBoard player2Shipboard;
 
     @Before
-    public void setUp() {
+    private void startUp() {
         game = new BattleshipGame();
         player1Shipboard = game.getPlayer1Shipboard();
         player2Shipboard = game.getPlayer2Shipboard();
+        player1Shipboard = new ShipBoard();
     }
+
+
 
     /*-placeRounds test-----------------------------------------------------------------------------------------------*/
     @Test
     public void playRounds_player1Wins_whenAllPlayer2ShipSunk() {
+
         // TODO: how do I simulate all player2's ships sunk?
         // TODO: game must correctly identify player1 as the winner
         assertTrue("Player 1 should win if all Player 2's ships are sunk", player2Shipboard.allShipsSunk());

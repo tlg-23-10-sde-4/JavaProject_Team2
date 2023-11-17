@@ -11,10 +11,15 @@ class PlayerTest {
     public static void main(String[] args) {
         ShipBoard shipBoard = new ShipBoard();
         Player p1 = new Player();
-        //p1.placeShips(shipBoard);
-        //System.out.println(ShipBoard.getShipBoard());
-        p1.takeTurn();
+        p1.placeShips(shipBoard);
+        System.out.println(shipBoard.getShipBoard());
+
     }}
+
+/*    @Test
+    public void takeTurn() {
+    }
+}*/
 
 /*
     @Test
