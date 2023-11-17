@@ -34,7 +34,6 @@ public class Ship {
                 shipCoordinates.add(value+secondLetter);
             }
         }
-
         return shipCoordinates;
     }
 }

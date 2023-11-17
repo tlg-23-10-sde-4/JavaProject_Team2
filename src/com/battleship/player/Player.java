@@ -16,14 +16,15 @@ public class Player {
     private ShipBoard shipBoard;
 
     public Player() {
+        this.shipBoard = new ShipBoard();
     }
 
     public Player(String name) {
+        this();
         setFleetName(name);
     }
 
     public void placeShips(Scanner scanner) {
-
         for (ShipType ship : ShipType.values()) {
             System.out.println("Placing ship: " + ship.getName() + "; size: " + ship.getSize());
             String shipPlacement;
@@ -48,7 +49,6 @@ public class Player {
     }
 
     public String takeTurn(Scanner scanner) {
-
         System.out.println(getFleetName()+ " enter your firing coordinate (e.g., B7): ");
         String guess = scanner.next().toUpperCase();
 
