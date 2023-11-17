@@ -2,10 +2,6 @@ package com.battleship.main;
 import com.battleship.boards.FiringBoard;
 import com.battleship.boards.ShipBoard;
 import com.battleship.player.Player;
-import com.battleship.ship.Ship;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BattleshipGame {
     private final Player player1;
@@ -17,7 +13,7 @@ public class BattleshipGame {
 
 
     public BattleshipGame() {
-        player1 = new Player(); // TODO: update constructor in Player
+        player1 = new Player();
         player2 = new Player();
     }
 
@@ -29,7 +25,7 @@ public class BattleshipGame {
     // ship placement management
     private void placeShipsForPlayers() {
         System.out.println("Player 1, place your ships:");
-        player1.placeShips(player1Shipboard); // TODO: getShipBoard() implement method in Player
+        player1.placeShips(player1Shipboard);
 
         System.out.println("Player 2, place your ships:");
         player2.placeShips(player2Shipboard);
@@ -39,36 +35,28 @@ public class BattleshipGame {
     private void playRounds() {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) { // alternate turns until a 'player' loses
             System.out.println("Player 1's turn to fire:");
-            takeTurn(player1, player2);
-            if (player2Shipboard.allShipsSunk()) {
-                System.out.println("Player 1 wins!");
-                break;
-            }
+            takeTurns(player1, player2);
 
-            takeTurn(player2, player1);
-            if (player1Shipboard.allShipsSunk()) {
-                System.out.println("Player 2 wins!");
-                break;
+            if (player1Shipboard.allShipsSunk()){
+                System.out.println("Player 2 has won");
+            }
+            if (player2Shipboard.allShipsSunk()){
+                System.out.println("Player 1 has won");
             }
         }
     }
 
     // player turn management
-    private void takeTurn(Player player1, Player player2) {
+    private void takeTurns(Player player1, Player player2) {
         System.out.println(player1.getClass().getName() + " Player's turn to fire: ");
-        String guess = player1.takeTurn();
 
-        // TODO: handle what happens when player makes guess
-        player1FiringBoard.fire(guess);
-
-        // display boards
-        player1FiringBoard.printBoard(); // TODO: implement getFiringBoard() in Player
+        player1FiringBoard.printBoard();
+        player1FiringBoard.fire(player1.takeTurn());
         player2Shipboard.printBoard();
 
-        // check if opponent lost
-        if (player2Shipboard.allShipsSunk()) {
-            System.out.println(player1.getClass().getName() + " has won the game!");
-        }
+        player2FiringBoard.printBoard();
+        player2FiringBoard.fire(player2.takeTurn());
+        player1Shipboard.printBoard();
     }
 
     public Player getPlayer1() {
