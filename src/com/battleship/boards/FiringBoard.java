@@ -26,9 +26,11 @@ public class FiringBoard {
             for (String shot : fireRecord) {
                 if (aim.equals(shot)) {
                     System.out.println("That grid has already been hit!");
+                    break;
                 } else {
                     fireRecord.add(aim);
                     impact(aim, shipBoard);
+                    break;
                 }
             }
         }
@@ -44,6 +46,7 @@ public class FiringBoard {
                 System.out.println("That round hit a ship! " + aim);
                 hit(aim, shipBoard);
                 result = true;
+                break;
             }
             else {
                 if (fireRecord == null || fireRecord.isEmpty()){
@@ -52,6 +55,7 @@ public class FiringBoard {
                 fireRecord.add("O"+ aim);
                 System.out.println("That round hit water. " + aim);
                 result = false;
+                break;
             }
         }
         return result;
@@ -67,7 +71,7 @@ public class FiringBoard {
         System.out.println(fireRecord);
     }
 
-    //ACCESSOR METHODS
+    //ACCESSOR METHODS (Note: I don't know if we need any of these ~ Lance)
     public ArrayList<String> getFireRecord() {
         return fireRecord;
     }
