@@ -14,7 +14,16 @@ class PlayerTest {
         p1.placeShips(shipBoard);
         System.out.println(shipBoard.getShipBoard());
 
-    }}
+    }
+
+    @Test
+    public void placeShips() {
+    }
+
+    @Test
+    public void takeTurn() {
+    }
+}
 
 /*    @Test
     public void takeTurn() {

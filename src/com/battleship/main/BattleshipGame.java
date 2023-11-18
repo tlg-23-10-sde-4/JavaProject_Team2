@@ -26,6 +26,7 @@ public class BattleshipGame {
     private void placeShipsForPlayers() {
         System.out.println("Player 1, place your ships:");
         player1.placeShips(player1Shipboard);
+        //TODO clear console after ship is placed, may be done in another class
 
         System.out.println("Player 2, place your ships:");
         player2.placeShips(player2Shipboard);
@@ -48,12 +49,14 @@ public class BattleshipGame {
 
     // player turn management
     private void takeTurns(Player player1, Player player2) {
-        System.out.println(player1.getClass().getName() + " Player's turn to fire: ");
+        System.out.println("Player 1's turn to fire: ");
 
         player1FiringBoard.printBoard();
         player1FiringBoard.fire(player1.takeTurn(), player2Shipboard);
         player2Shipboard.printBoard();
 
+        // TODO need to clear console after each players turn
+        System.out.println("Player 2's turn to fire: ");
         player2FiringBoard.printBoard();
         player2FiringBoard.fire(player2.takeTurn(), player1Shipboard);
         player1Shipboard.printBoard();
