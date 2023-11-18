@@ -1,46 +1,43 @@
 package com.battleship.boards;
 
-import com.battleship.player.Player;
-import com.battleship.ship.Ship;
-import com.battleship.ship.ShipType;
-
 import java.util.ArrayList;
 
 public class ShipBoard {
 
     //FIELDS
-    private static ArrayList<ArrayList<String>> shipBoard;
+    private ArrayList<ArrayList<String>> shipBoard;
     private ArrayList<String> shipLocation;
     //CONSTRUCTOR
     public void placeShip(ArrayList<String> location) {
-        if (isValidPlacement(location)) {
+//        if (isValidPlacement(location)) {
             if (shipBoard == null) {
                 shipBoard = new ArrayList<>();
             }
             shipBoard.add(location);
         }
-    }
+
 
     //METHODS
-    public boolean sink() {
+    public boolean sink(ShipBoard shipBoard) {
         boolean result = false;
-        for (ArrayList<String> boat : shipBoard) {
-            if (boat.size()== 0) {
-                shipBoard.remove(boat);
+        for (ArrayList<String> boat : shipBoard.getShipBoard()) {
+            if (boat.size() == 0) {
                 result = true;
+                break;
             }
         }
         return result;
     }
 
+    // TODO still need to test if this is working properly now
     public boolean isValidPlacement(ArrayList<String> location) {
+        int count = 0;
         boolean result = false;
         if (shipLocation == null) {
             shipLocation = new ArrayList<>();
             result = true;
         }
         else {
-
             for (String grid : location) {
                 if (shipLocation.contains(grid)) {
                     System.out.println("That ship grid causes a collision with a boat, \n Please choose a new grid.");
@@ -48,10 +45,24 @@ public class ShipBoard {
                 }
                 else {
                     shipLocation.add(grid);
-                    //shipBoard.add(location);
+                    System.out.println("shipLocation= "+shipLocation);
                     result = true;
                 }
-
+            }
+            for (ArrayList<String> ship : shipBoard) {
+                for (String loc : location){
+                    if (ship.contains(loc)) {
+                        result = false;
+                        break;
+                    }
+                    else {
+                        result = true;
+                    }
+                }
+            }
+            if (result) {
+                placeShip(shipLocation);
+                shipLocation.clear();
             }
         }
         return result;

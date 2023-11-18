@@ -17,46 +17,49 @@ public class FiringBoard {
 
     //METHODS
     public void fire(String aim, ShipBoard shipBoard) {
-        boolean validShot = false;
         if (fireRecord == null) {
             fireRecord = new ArrayList<>();
             fireRecord.add(aim);
-            validShot = true;
+            impact(aim, shipBoard);
         }
-        for (String shot : fireRecord) {
-            if (aim.equals(shot)) {
-                System.out.println("That grid has already been hit!");
-                validShot = false;
-            }
-            else {
-                fireRecord.add(aim);
-                impact(shipBoard);
-                validShot = true;
+        else {
+            for (String shot : fireRecord) {
+                if (aim.equals(shot)) {
+                    System.out.println("That grid has already been hit!");
+                } else {
+                    fireRecord.add(aim);
+                    impact(aim, shipBoard);
+                }
             }
         }
     }
-    public boolean impact(ShipBoard shipBoard) {
+    public boolean impact(String aim, ShipBoard shipBoard) {
         boolean result = false;
         for (ArrayList<String> boat : shipBoard.getShipBoard()){
-            if (boat.contains(gridAim())) {
-                firingBoardHits.add("X-" + gridAim());
-                System.out.println("That round hit a ship!" + gridAim());
-                hit(shipBoard);
+            if (boat.contains(aim)) {
+                if (firingBoardHits == null || firingBoardHits.isEmpty()){
+                    firingBoardHits = new ArrayList<>();
+                }
+                firingBoardHits.add("X-"+aim);
+                System.out.println("That round hit a ship! " + aim);
+                hit(aim, shipBoard);
                 result = true;
             }
             else {
-                fireRecord.add("O-" + gridAim());
-                System.out.println("That round hit water." + gridAim());
+                if (fireRecord == null || fireRecord.isEmpty()){
+                    fireRecord = new ArrayList<>();
+                }
+                fireRecord.add("O"+ aim);
+                System.out.println("That round hit water. " + aim);
                 result = false;
             }
         }
         return result;
     }
 
-    private void hit(ShipBoard shipBoard) {
-        for (String hit : getFiringBoardHits()) {
-            for (ArrayList<String> boat : shipBoard.getShipBoard())
-                boat.remove(hit);
+    private void hit(String guess, ShipBoard shipBoard) {
+        for (ArrayList<String> boat : shipBoard.getShipBoard()){
+            boat.remove(guess);
         }
     }
 
@@ -69,7 +72,7 @@ public class FiringBoard {
         return fireRecord;
     }
 
-    public static ArrayList<String> getFiringBoardHits() {
+    public ArrayList<String> getFiringBoardHits() {
         return firingBoardHits;
     }
 

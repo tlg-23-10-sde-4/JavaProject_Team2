@@ -39,14 +39,14 @@ public class Player {
         String shipPlacement = null;
         boolean isHorizontal = false;
         System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
-        shipPlacement = scanner.next().trim();
+        shipPlacement = scanner.next().trim().toUpperCase();
         System.out.println("Ship horizontal? (true/false)");
         isHorizontal = scanner.nextBoolean();
         ArrayList<String> shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
 
         while (!shipPlacement.matches(PATTERN) || !shipBoard.isValidPlacement(shipGenerated) || !isValidPlacement(shipGenerated)){
             System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");
-            shipPlacement = scanner.next().trim();
+            shipPlacement = scanner.next().trim().toUpperCase();
             System.out.println("Ship horizontal? (true/false)");
             isHorizontal = scanner.nextBoolean();
             shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);

@@ -16,9 +16,8 @@ class BattleshipGameTest {
     @Before
     private void startUp() {
         game = new BattleshipGame();
-        player1Shipboard = game.getPlayer1Shipboard();
-        player2Shipboard = game.getPlayer2Shipboard();
         player1Shipboard = new ShipBoard();
+        player2Shipboard = new ShipBoard();
     }
 
 

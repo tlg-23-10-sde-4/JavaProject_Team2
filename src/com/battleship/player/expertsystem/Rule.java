@@ -7,7 +7,7 @@ import com.battleship.boards.ShipBoard;
 import java.util.ArrayList;
 
 class Rule {
-    ArrayList<String> firingBoardHits = FiringBoard.getFiringBoardHits();
+    //ArrayList<String> firingBoardHits = FiringBoard.getFiringBoardHits();
 
 
 }
