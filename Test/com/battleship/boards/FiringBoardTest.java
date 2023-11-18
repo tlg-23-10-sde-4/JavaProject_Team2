@@ -43,9 +43,11 @@ public class FiringBoardTest {
     public void impact_shouldReturnFalse_whenFiringBoardMisses() {
         ArrayList<String> aList = new ArrayList<>();
         aList.add("A1");
+        aList.add("B2");
+        aList.add("A2");
         shipBoard.placeShip(aList);
         shipBoard.printBoard();
-        playerGuess = "A2";
+        playerGuess = "A5";
         boolean result = firingBoard.impact(playerGuess, shipBoard);
         Assert.assertFalse(result);
     }
@@ -56,7 +58,6 @@ public class FiringBoardTest {
         aList.add("A1");
         aList.add("B2");
         shipBoard.placeShip(aList);
-        shipBoard.printBoard();
         playerGuess = "A1";
         firingBoard.fire(playerGuess, shipBoard);
         shipBoard.printBoard();

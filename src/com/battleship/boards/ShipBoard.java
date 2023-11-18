@@ -10,7 +10,7 @@ public class ShipBoard {
     //CONSTRUCTOR
     public void placeShip(ArrayList<String> location) {
 //        if (isValidPlacement(location)) {
-            if (shipBoard == null) {
+            if (shipBoard == null || shipBoard.isEmpty()) {
                 shipBoard = new ArrayList<>();
             }
             shipBoard.add(location);
@@ -42,6 +42,7 @@ public class ShipBoard {
                 if (shipLocation.contains(grid)) {
                     System.out.println("That ship grid causes a collision with a boat, \n Please choose a new grid.");
                     result = false;
+                    break;
                 }
                 else {
                     shipLocation.add(grid);
@@ -52,6 +53,7 @@ public class ShipBoard {
             for (ArrayList<String> ship : shipBoard) {
                 for (String loc : location){
                     if (ship.contains(loc)) {
+                        shipLocation.clear();
                         result = false;
                         break;
                     }
