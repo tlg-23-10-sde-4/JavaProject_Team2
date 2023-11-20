@@ -55,14 +55,30 @@ public class FiringBoardTest {
     @Test
     public void hit_shouldRemoveShip_whenValidShotHitsShip(){
         ArrayList<String> aList = new ArrayList<>();
+        ArrayList<String> bList = new ArrayList<>();
+        aList.add("B3");
+        aList.add("A2");
         aList.add("A1");
+        aList.add("A4");
         aList.add("B2");
+        bList.add("D3");
+        bList.add("D2");
+        bList.add("D1");
+        bList.add("D4");
+        bList.add("D7");
         shipBoard.placeShip(aList);
+        shipBoard.placeShip(bList);
         playerGuess = "A1";
         firingBoard.fire(playerGuess, shipBoard);
         shipBoard.printBoard();
-        System.out.println("Should only have B2 above this");
+        playerGuess = "D3";
+        firingBoard.fire(playerGuess, shipBoard);
+        shipBoard.printBoard();
+        playerGuess = "A8";
+        firingBoard.fire(playerGuess, shipBoard);
+        shipBoard.printBoard();
     }
+
 
     //TODO add more tests
 }

@@ -49,16 +49,24 @@ public class BattleshipGame {
 
     // player turn management
     private void takeTurns(Player player1, Player player2) {
-        System.out.println("Player 1's turn to fire: ");
+        //System.out.println("Player 1's turn to fire: ");
 
         player1FiringBoard.printBoard();
         player1FiringBoard.fire(player1.takeTurn(), player2Shipboard);
+        if (player2Shipboard.sink(player2Shipboard)){
+            System.out.println("Player 2's ship has been sunk");
+        }
+        System.out.println("Player 2's shipBoard");
         player2Shipboard.printBoard();
 
         // TODO need to clear console after each players turn
         System.out.println("Player 2's turn to fire: ");
         player2FiringBoard.printBoard();
         player2FiringBoard.fire(player2.takeTurn(), player1Shipboard);
+        if (player1Shipboard.sink(player1Shipboard)){
+            System.out.println("Player 1's ship has been sunk");
+        }
+        System.out.println("Player 1's shipBoard");
         player1Shipboard.printBoard();
     }
 

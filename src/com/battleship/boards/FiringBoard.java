@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class FiringBoard {
 
 //FIELDS
-    private static ArrayList<String> fireRecord;
+    private ArrayList<String> fireRecord;
 
-    private static ArrayList<String> firingBoardHits;
+    private ArrayList<String> firingBoardHits;
 
     private ArrayList<String> firingBoardMisses;
 
@@ -18,6 +18,8 @@ public class FiringBoard {
     //METHODS
     public void fire(String aim, ShipBoard shipBoard) {
         if (fireRecord == null) {
+            firingBoardHits = new ArrayList<>();
+            firingBoardMisses = new ArrayList<>();
             fireRecord = new ArrayList<>();
             fireRecord.add(aim);
             impact(aim, shipBoard);
@@ -35,27 +37,25 @@ public class FiringBoard {
             }
         }
     }
+
     public boolean impact(String aim, ShipBoard shipBoard) {
         boolean result = false;
         for (ArrayList<String> boat : shipBoard.getShipBoard()){
-            if (boat.contains(aim)) {
-                if (firingBoardHits == null || firingBoardHits.isEmpty()){
-                    firingBoardHits = new ArrayList<>();
-                }
-                firingBoardHits.add("X-"+aim);
-                System.out.println("That round hit a ship! " + aim);
-                hit(aim, shipBoard);
-                result = true;
-                break;
-            }
-            else {
-                if (fireRecord == null || fireRecord.isEmpty()){
-                    fireRecord = new ArrayList<>();
-                }
-                fireRecord.add("O"+ aim);
-                System.out.println("That round hit water. " + aim);
-                result = false;
-                break;
+
+            for (String b : boat) {
+                if (b.equals(aim)) {
+                    firingBoardHits.add("X-" + aim);
+                    System.out.println("That round hit a ship! " + aim);
+                    hit(aim, shipBoard);
+                    result = true;
+                    break;
+
+                } /*else {
+                    fireRecord.add("O" + aim);
+                    System.out.println("That round hit water. " + aim);
+                    result = false;
+
+                }*/
             }
         }
         return result;
@@ -80,10 +80,11 @@ public class FiringBoard {
         return firingBoardHits;
     }
 
-    public static void setFiringBoardHits(ArrayList<String> firingBoardHits) {
+/*    public static void setFiringBoardHits(ArrayList<String> firingBoardHits) {
         FiringBoard.firingBoardHits = firingBoardHits;
-    }
+    }*/
 
+/*
     public ArrayList<String> getFiringBoardMisses() {
         return firingBoardMisses;
     }
@@ -91,6 +92,7 @@ public class FiringBoard {
     public void setFiringBoardMisses(ArrayList<String> firingBoardMisses) {
         this.firingBoardMisses = firingBoardMisses;
     }
+*/
 
     public String gridAim() {
         return Player.guess;
