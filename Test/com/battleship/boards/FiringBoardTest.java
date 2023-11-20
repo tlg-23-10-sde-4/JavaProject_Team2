@@ -13,19 +13,11 @@ public class FiringBoardTest {
     FiringBoard firingBoard = new FiringBoard(shipBoard);
     Player player = new Player();
 
-
-
-/*    @Test
-    public void fireRecord_shouldAddString_whenStringIsUnique() {
-        playerGuess = "B7";
-    }*/
-
     @Test
     public void fire_shouldWork_whenFireHitsShip() {
         List<String> aList = new ArrayList<>();
         aList.add("A1");
         shipBoard.placeShip(aList);
-        shipBoard.printBoard();
         playerGuess = "A1";
         firingBoard.fire(playerGuess);
     }
@@ -35,7 +27,6 @@ public class FiringBoardTest {
         List<String> aList = new ArrayList<>();
         aList.add("A1");
         shipBoard.placeShip(aList);
-        shipBoard.printBoard();
         playerGuess = "A1";
         boolean result = firingBoard.impact(playerGuess);
         Assert.assertTrue(result);
@@ -48,14 +39,13 @@ public class FiringBoardTest {
         aList.add("B2");
         aList.add("A2");
         shipBoard.placeShip(aList);
-        shipBoard.printBoard();
         playerGuess = "A5";
         boolean result = firingBoard.impact(playerGuess);
         Assert.assertFalse(result);
     }
 
     @Test
-    public void hit_shouldRemoveShip_whenValidShotHitsShip(){
+    public void hit_shouldRemoveShip_whenValidShotHitsShip() {
         List<String> aList = new ArrayList<>();
         List<String> bList = new ArrayList<>();
         aList.add("B3");
@@ -72,15 +62,9 @@ public class FiringBoardTest {
         shipBoard.placeShip(bList);
         playerGuess = "A1";
         firingBoard.fire(playerGuess);
-        shipBoard.printBoard();
         playerGuess = "D3";
         firingBoard.fire(playerGuess);
-        shipBoard.printBoard();
         playerGuess = "A8";
         firingBoard.fire(playerGuess);
-        shipBoard.printBoard();
     }
-
-
-    //TODO add more tests
 }

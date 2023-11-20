@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-public class CPUPlayer extends Player{
+public class CPUPlayer extends Player {
     private static Random random;
     private static String previousHit;
     private static final String pattern = "[a-jA-J]{1}[0-9]{1}";
@@ -18,18 +18,18 @@ public class CPUPlayer extends Player{
         random = new Random();
     }
 
-    public String takeTurn(FiringBoard firingBoard, ShipBoard shipBoard){
+    public String takeTurn(FiringBoard firingBoard, ShipBoard shipBoard) {
 
         // rule-based shooting strategy
         String guess;
 
         // Rule 1: If there was a hit, target nearby locations
-        if (previousHit != null){
+        if (previousHit != null) {
             guess = generateNearbyTarget(previousHit);
         }
 
         // Rule 2: On the first turn or no hits, shoot randomly
-        else{
+        else {
             do {
                 char letter = (char) (random.nextInt(9) + ('a'));
                 char number = (char) (random.nextInt(9));
@@ -45,14 +45,14 @@ public class CPUPlayer extends Player{
         return guess;
     }
 
-    private String generateNearbyTarget(String previousHit){
+    private String generateNearbyTarget(String previousHit) {
         String guess;
         char row = previousHit.charAt(0);
         char col = previousHit.charAt(1);
 
         // simple strategy, shoot above, below, left, or right of previous hit
         int direction = random.nextInt(4);
-        switch (direction){
+        switch (direction) {
             case 0: // above
                 guess = String.valueOf(row) + (col + 1);
                 break;
@@ -69,7 +69,6 @@ public class CPUPlayer extends Player{
                 return previousHit;
 
         }
-
         return guess;
     }
 

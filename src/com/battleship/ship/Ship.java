@@ -12,7 +12,7 @@ public class Ship {
         this.hits = 0;
     }
 
-    public static List<String> generateShipPlacement(ShipType shipType, String location, boolean isHorizontal){
+    public static List<String> generateShipPlacement(ShipType shipType, String location, boolean isHorizontal) {
         List<String> shipCoordinates = new ArrayList<>();
         int size = shipType.getSize();
         char firstChar = location.charAt(0);
