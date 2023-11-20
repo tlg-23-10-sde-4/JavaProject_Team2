@@ -1,7 +1,5 @@
 package com.battleship.boards;
 
-import com.battleship.player.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +70,57 @@ public class FiringBoard {
     }
 
     public void printBoard() {
-        System.out.println(fireRecord);
+        display();
+        //System.out.println(fireRecord);
     }
 
+    public void display(){
+        char[][] board = boardThings();
+        for (char[] chars : board) {
+            System.out.println(chars);
+        }
+    }
+    private char[][] boardThings(){
+        char[][] board = {
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+        };
+
+        if (fireRecord == null || fireRecord.isEmpty()){
+            fireRecord = new ArrayList<>();
+            firingBoardHits = new ArrayList<>();
+        }
+
+        for (String record : fireRecord){
+            char row = record.charAt(0);
+            char col = record.charAt(1);
+            int rowInt = (row - 'a' +1) - 1;
+            board[rowInt][col] = 'm';
+        }
+        for (String record : firingBoardHits){
+            char row = record.charAt(0);
+            char col = record.charAt(1);
+            int rowInt = (row - 'a' +1) - 1;
+            board[rowInt][col] = 'h';
+        }
+//        for (List<String> boat : shipBoard.getShipBoard()){
+//            for (String b : boat) {
+//                System.out.println(b);
+//                char row = b.charAt(0);
+//                char col = b.charAt(1);
+//                int rowInt = (row - 'a' + 1);
+//                System.out.println("row= " +rowInt+ "\ncol = "+col);
+//                board[rowInt - 1][col] = 's';
+//            }
+//        }
+        return board;
+    }
 }
