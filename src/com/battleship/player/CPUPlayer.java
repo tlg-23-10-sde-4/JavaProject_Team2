@@ -38,7 +38,7 @@ public class CPUPlayer extends Player{
                 guess = s1 + s2;
             } while (!guess.matches(pattern));
         }
-        if (firingBoard.impact(guess, shipBoard) && !shipBoard.sink(shipBoard)){
+        if (firingBoard.impact(guess, shipBoard) && !shipBoard.sink()){
             previousHit = guess;
         }
 

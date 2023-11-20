@@ -35,25 +35,17 @@ public class BattleshipGame {
     // game round management
     public void playRounds() {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) { // alternate turns until a 'player' loses
-            System.out.println("Player 1's turn to fire:");
             takeTurns(player1, player2);
-
-//            if (player1Shipboard.allShipsSunk()){
-//                System.out.println("Player 2 has won");
-//            }
-//            if (player2Shipboard.allShipsSunk()){
-//                System.out.println("Player 1 has won");
-//            }
         }
     }
 
     // player turn management
     private void takeTurns(Player player1, Player player2) {
-        //System.out.println("Player 1's turn to fire: ");
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) {
+            System.out.println("Player 1's turn to fire: ");
             player1FiringBoard.printBoard();
             player1FiringBoard.fire(player1.takeTurn(), player2Shipboard);
-            if (player2Shipboard.sink(player2Shipboard)) {
+        if (player2Shipboard.sink()){
                 System.out.println("Player 2's ship has been sunk");
             }
             if (player2Shipboard.allShipsSunk()) {
@@ -67,7 +59,7 @@ public class BattleshipGame {
             System.out.println("Player 2's turn to fire: ");
             player2FiringBoard.printBoard();
             player2FiringBoard.fire(player2.takeTurn(), player1Shipboard);
-            if (player1Shipboard.sink(player1Shipboard)) {
+        if (player1Shipboard.sink()){
                 System.out.println("Player 1's ship has been sunk");
             }
             System.out.println("Player 1's shipBoard");

@@ -15,10 +15,8 @@ public class ShipBoard {
             shipBoard.add(location);
         }
 
-
     //METHODS
-    // TODO need the boats to be fully removed from shipboard
-    public boolean sink(ShipBoard boatLocation) {
+    public boolean sink() {
         boolean result = false;
         System.out.println(shipBoard.size());
         for (ArrayList<String> boat : shipBoard) {
@@ -35,18 +33,6 @@ public class ShipBoard {
         return result;
     }
 
-//    //TODO implement this so that the shipboard can update and remove the empty arrays that aren't being removed
-//    private ArrayList<ArrayList<String>> removeEmptyArrays(ShipBoard shipBoard){
-//        ArrayList<ArrayList<String>> updatedShipBoard = new ArrayList<>();
-//        for (ArrayList<String> ship : shipBoard.getShipBoard()){
-//            if (!ship.isEmpty()){
-//                updatedShipBoard.add(ship);
-//            }
-//        }
-//        return updatedShipBoard;
-//    }
-
-    // TODO still need to test if this is working properly now
     public boolean isValidPlacement(ArrayList<String> location) {
         boolean result = false;
         if (shipBoard== null){
@@ -66,43 +52,12 @@ public class ShipBoard {
                 }
             }
         }
-        /*else {
-            for (String grid : location) {
-                if (shipLocation.contains(grid)) {
-                    System.out.println("That ship grid causes a collision with a boat, \n Please choose a new grid.");
-                    result = false;
-                    break;
-                }
-                else {
-                    shipLocation.add(grid);
-                    System.out.println("shipLocation= "+shipLocation);
-                    result = true;
-                }
-            }
-            for (ArrayList<String> ship : shipBoard) {
-                for (String loc : location){
-                    if (ship.contains(loc)) {
-                        shipLocation.clear();
-                        result = false;
-                        break;
-                    }
-                    else {
-                        result = true;
-                    }
-                }
-            }
-            if (result) {
-                placeShip(shipLocation);
-                shipLocation.clear();
-            }
-        }*/
         return result;
     }
-    //        return (shipBoard == null || shipBoard.isEmpty() || shipBoard.size() == 0);
 
     public boolean allShipsSunk() {
         boolean result = false;
-        if (shipBoard.size() == 0) {
+        if (shipBoard == null || shipBoard.size() == 0) {
             result = true;
         }
         return result;
