@@ -46,7 +46,6 @@ public class ShipBoardTest {
         ship.add("b1");
         shipBoard.placeShip(ship);
         ship2.add("b3");
-        shipBoard.printBoard();
         Assert.assertTrue(shipBoard.isValidPlacement(ship2));
     }
 }
