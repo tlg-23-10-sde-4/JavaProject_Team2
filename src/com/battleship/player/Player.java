@@ -4,7 +4,6 @@ import com.battleship.boards.ShipBoard;
 import com.battleship.ship.Ship;
 import com.battleship.ship.ShipType;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -82,7 +81,7 @@ public class Player {
         String coordinates;
         do {
             System.out.println("Use valid coordinates");
-            coordinates = scanner.next().trim().toUpperCase();
+            coordinates = scanner.next().trim();
         } while (!coordinates.matches(PATTERN));
         return coordinates;
     }

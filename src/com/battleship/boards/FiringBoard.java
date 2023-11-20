@@ -46,14 +46,14 @@ public class FiringBoard {
 
             for (String b : boat) {
                 if (b.equals(aim)) {
-                    firingBoardHits.add("X-" + aim);
+                    firingBoardHits.add(aim);
                     System.out.println("That round hit a ship! " + aim);
                     hit(aim);
                     result = true;
                     break;
 
                 } else {
-                    fireRecord.add("O" + aim);
+                    fireRecord.add(aim);
                     System.out.println("That round hit water. " + aim);
                     result = false;
                     break;
@@ -69,18 +69,19 @@ public class FiringBoard {
         }
     }
 
-    public void printBoard() {
-        display();
-        //System.out.println(fireRecord);
-    }
-
-    public void display(){
-        char[][] board = boardThings();
+    public void printFiringBoard(){
+        char[][] board = displayFiringBoard();
         for (char[] chars : board) {
             System.out.println(chars);
         }
     }
-    private char[][] boardThings(){
+    public void printShipBoard(){
+        char[][] board = displayShipBoard();
+        for (char[] chars : board) {
+            System.out.println(chars);
+        }
+    }
+    private  char[][] displayShipBoard() {
         char[][] board = {
                 {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
                 {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
@@ -94,33 +95,55 @@ public class FiringBoard {
                 {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
         };
 
-        if (fireRecord == null || fireRecord.isEmpty()){
-            fireRecord = new ArrayList<>();
-            firingBoardHits = new ArrayList<>();
+        if (shipBoard != null) {
+            for (List<String> boat : shipBoard.getShipBoard()) {
+                for (String b : boat) {
+                    System.out.println(b);
+                    char row = b.charAt(0);
+                    char col = b.charAt(1);
+                    int colInt = col - '1';
+                    int rowInt = (row - 'a' + 1) - 1;
+                    board[rowInt][colInt] = 'S';
+                }
+            }
         }
+        return board;
+    }
 
-        for (String record : fireRecord){
-            char row = record.charAt(0);
-            char col = record.charAt(1);
-            int rowInt = (row - 'a' +1) - 1;
-            board[rowInt][col] = 'm';
+    private char[][] displayFiringBoard() {
+        char[][] board = {
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+        };
+
+        if (fireRecord != null && firingBoardHits != null) {
+
+            for (String record : fireRecord) {
+                char row = record.charAt(0);
+                char col = record.charAt(1);
+                int colInt = col - '1';
+                int rowInt = (row - 'a' + 1) - 1;
+                board[rowInt][colInt] = 'M';
+            }
+
+            for (String record : firingBoardHits) {
+                char row = record.charAt(0);
+                char col = record.charAt(1);
+                int colInt = col - '1';
+                int rowInt = (row - 'a' + 1) - 1;
+                board[rowInt][colInt] = 'H';
+
+            }
+
         }
-        for (String record : firingBoardHits){
-            char row = record.charAt(0);
-            char col = record.charAt(1);
-            int rowInt = (row - 'a' +1) - 1;
-            board[rowInt][col] = 'h';
-        }
-//        for (List<String> boat : shipBoard.getShipBoard()){
-//            for (String b : boat) {
-//                System.out.println(b);
-//                char row = b.charAt(0);
-//                char col = b.charAt(1);
-//                int rowInt = (row - 'a' + 1);
-//                System.out.println("row= " +rowInt+ "\ncol = "+col);
-//                board[rowInt - 1][col] = 's';
-//            }
-//        }
         return board;
     }
 }
