@@ -1,3 +1,3 @@
    @echo off
    cls
-   java -classpath out\production\blackjack;"lib\*" com.games.blackjack.client.Main
+   java -classpath out\production\JavaProject_Team2;"lib\*" com.battleship.client
