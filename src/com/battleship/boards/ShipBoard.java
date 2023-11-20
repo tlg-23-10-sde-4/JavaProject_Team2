@@ -28,8 +28,9 @@ public class ShipBoard {
                 result = true;
                 break;
             }
-            System.out.println(shipBoard.size());
+
         }
+        System.out.println(shipBoard.size());
         System.out.println(shipBoard);
         return result;
     }
@@ -97,9 +98,14 @@ public class ShipBoard {
         }*/
         return result;
     }
+    //        return (shipBoard == null || shipBoard.isEmpty() || shipBoard.size() == 0);
 
     public boolean allShipsSunk() {
-        return (shipBoard == null || shipBoard.isEmpty() || shipBoard.size() == 0);
+        boolean result = false;
+        if (shipBoard.size() == 0) {
+            result = true;
+        }
+        return result;
     }
 
     //ACCESSORS
