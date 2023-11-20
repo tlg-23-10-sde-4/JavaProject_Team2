@@ -74,4 +74,5 @@ public class FiringBoard {
     public void printBoard() {
         System.out.println(fireRecord);
     }
+
 }
