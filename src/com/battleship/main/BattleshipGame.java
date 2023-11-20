@@ -73,8 +73,5 @@ public class BattleshipGame {
     }
 
     // main method
-    public static void main(String[] args) {
-        BattleshipGame game = new BattleshipGame();
-        game.startGame();
-    }
+
 }
