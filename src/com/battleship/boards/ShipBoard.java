@@ -9,8 +9,7 @@ public class ShipBoard {
     private ArrayList<String> shipLocation;
     //CONSTRUCTOR
     public void placeShip(ArrayList<String> location) {
-//        if (isValidPlacement(location)) {
-            if (shipBoard == null || shipBoard.isEmpty()) {
+            if (shipBoard == null) {
                 shipBoard = new ArrayList<>();
             }
             shipBoard.add(location);
@@ -18,26 +17,52 @@ public class ShipBoard {
 
 
     //METHODS
+    // TODO need the boats to be fully removed from shipboard
     public boolean sink(ShipBoard shipBoard) {
         boolean result = false;
         for (ArrayList<String> boat : shipBoard.getShipBoard()) {
+            System.out.println(boat.size());
+            System.out.println(shipBoard.getShipBoard().size());
             if (boat.size() == 0) {
                 result = true;
-                break;
             }
         }
+        System.out.println(shipBoard.allShipsSunk());
         return result;
+    }
+
+    //TODO implement this so that the shipboard can update and remove the empty arrays that aren't being removed
+    private ArrayList<ArrayList<String>> removeEmptyArrays(ShipBoard shipBoard){
+        ArrayList<ArrayList<String>> updatedShipBoard = new ArrayList<>();
+        for (ArrayList<String> ship : shipBoard.getShipBoard()){
+            if (!ship.isEmpty()){
+                updatedShipBoard.add(ship);
+            }
+        }
+        return updatedShipBoard;
     }
 
     // TODO still need to test if this is working properly now
     public boolean isValidPlacement(ArrayList<String> location) {
-        int count = 0;
         boolean result = false;
-        if (shipLocation == null) {
-            shipLocation = new ArrayList<>();
+        if (shipBoard== null){
+            shipBoard = new ArrayList<>();
             result = true;
         }
-        else {
+        for (ArrayList<String> shipList : shipBoard){
+            for (String ship : shipList){
+                if (!location.contains(ship)) {
+                    result = true;
+                }
+
+                else {
+                    System.out.println("One of the coordinates is intersecting with another ship, please try again.");
+                    result = false;
+                    break;
+                }
+            }
+        }
+        /*else {
             for (String grid : location) {
                 if (shipLocation.contains(grid)) {
                     System.out.println("That ship grid causes a collision with a boat, \n Please choose a new grid.");
@@ -66,12 +91,14 @@ public class ShipBoard {
                 placeShip(shipLocation);
                 shipLocation.clear();
             }
-        }
+        }*/
         return result;
     }
 
+
+
     public boolean allShipsSunk() {
-        return (shipBoard == null || shipBoard.size() == 0);
+        return (shipBoard == null || shipBoard.isEmpty() || shipBoard.size() == 0);
     }
 
     //ACCESSORS

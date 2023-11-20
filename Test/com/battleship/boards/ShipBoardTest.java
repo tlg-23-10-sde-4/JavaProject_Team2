@@ -22,4 +22,30 @@ public class ShipBoardTest {
         shipBoard.placeShip(ship);
         Assert.assertFalse(shipBoard.allShipsSunk());
     }
+
+    @Test
+    public void isValidPlacement_shouldReturnFalse_whenShipsOverlap(){
+        ShipBoard shipBoard = new ShipBoard();
+        ArrayList<String> ship = new ArrayList<>();
+        ArrayList<String> ship2 = new ArrayList<>();
+        ship.add("a1");
+        ship.add("b1");
+        shipBoard.placeShip(ship);
+        ship.add("b2");
+        ship2.add("b2");
+        Assert.assertFalse(shipBoard.isValidPlacement(ship2));
+    }
+
+    @Test
+    public void isValidPlacement_shouldReturnTrue_whenShipsDoNotOverlap(){
+        ShipBoard shipBoard = new ShipBoard();
+        ArrayList<String> ship = new ArrayList<>();
+        ArrayList<String> ship2 = new ArrayList<>();
+        ship.add("a1");
+        ship.add("b1");
+        shipBoard.placeShip(ship);
+        ship2.add("b3");
+        shipBoard.printBoard();
+        Assert.assertTrue(shipBoard.isValidPlacement(ship2));
+    }
 }
