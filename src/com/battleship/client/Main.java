@@ -1,3 +1,5 @@
+package com.battleship.client;
+
 import com.battleship.main.BattleshipGame;
 
 class Main {
