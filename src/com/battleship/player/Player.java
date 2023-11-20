@@ -6,6 +6,7 @@ import com.battleship.ship.ShipType;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Player {
@@ -19,7 +20,7 @@ public class Player {
 
     // TODO Game ends after turn/ or try catch if triggered/ need to fix
     public void placeShips(ShipBoard shipBoard) {
-        ArrayList<String> thisGeneratedShip;
+        List<String> thisGeneratedShip;
 
         try {
         for (ShipType ship : ShipType.values()) {
@@ -53,7 +54,7 @@ public class Player {
         return result;
     }
 
-    public boolean isValidBuild(ArrayList<String> ship){
+    public boolean isValidBuild(List<String> ship){
         boolean result = false;
         for (String s : ship){
             result = s.matches(PATTERN);
@@ -61,10 +62,10 @@ public class Player {
         return result;
     }
 
-    private ArrayList<String> generateShip(ShipType ship, ShipBoard shipBoard) {
+    private List<String> generateShip(ShipType ship, ShipBoard shipBoard) {
         String shipPlacement;
         boolean isHorizontal;
-        ArrayList<String> shipGenerated;
+        List<String> shipGenerated;
 
         do {
             System.out.println("Enter the position you want " + ship.getName() + " (e.g., C3): ");

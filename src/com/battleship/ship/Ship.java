@@ -1,6 +1,7 @@
 package com.battleship.ship;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ship {
     private final ShipType type;
@@ -11,8 +12,8 @@ public class Ship {
         this.hits = 0;
     }
 
-    public static ArrayList<String> generateShipPlacement(ShipType shipType, String location, boolean isHorizontal){
-        ArrayList<String> shipCoordinates = new ArrayList<>();
+    public static List<String> generateShipPlacement(ShipType shipType, String location, boolean isHorizontal){
+        List<String> shipCoordinates = new ArrayList<>();
         int size = shipType.getSize();
         char firstChar = location.charAt(0);
         char secondChar = location.charAt(1);

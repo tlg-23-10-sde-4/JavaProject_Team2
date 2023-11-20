@@ -8,9 +8,9 @@ public class BattleshipGame {
     private final Player player2;
     private final ShipBoard player1Shipboard = new ShipBoard();
     private final ShipBoard player2Shipboard = new ShipBoard();
-    private final FiringBoard player1FiringBoard = new FiringBoard();
-    private final FiringBoard player2FiringBoard = new FiringBoard();
-
+    private final FiringBoard player1FiringBoard = new FiringBoard(player2Shipboard);
+    private final FiringBoard player2FiringBoard = new FiringBoard(player1Shipboard);
+    //TODO ADD THE CONSTRUCTOR TO TAKE A SHIPBOARD
 
     public BattleshipGame() {
         player1 = new Player();
@@ -44,7 +44,7 @@ public class BattleshipGame {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) {
             System.out.println("Player 1's turn to fire: ");
             player1FiringBoard.printBoard();
-            player1FiringBoard.fire(player1.takeTurn(), player2Shipboard);
+            player1FiringBoard.fire(player1.takeTurn());
         if (player2Shipboard.sink()){
                 System.out.println("Player 2's ship has been sunk");
             }
@@ -58,7 +58,7 @@ public class BattleshipGame {
             // TODO need to clear console after each players turn
             System.out.println("Player 2's turn to fire: ");
             player2FiringBoard.printBoard();
-            player2FiringBoard.fire(player2.takeTurn(), player1Shipboard);
+            player2FiringBoard.fire(player2.takeTurn());
         if (player1Shipboard.sink()){
                 System.out.println("Player 1's ship has been sunk");
             }
