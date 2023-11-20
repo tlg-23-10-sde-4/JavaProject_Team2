@@ -3,24 +3,30 @@ package com.battleship.boards;
 import com.battleship.player.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FiringBoard {
 
 //FIELDS
-    private ArrayList<String> fireRecord;
+    private List<String> fireRecord;
 
-    private ArrayList<String> firingBoardHits;
+    private List<String> firingBoardHits;
 
+    private ShipBoard shipBoard;
 
     private String aiming;
 
+    public FiringBoard(ShipBoard shipBoard) {
+        this.shipBoard = shipBoard;
+    }
+
     //METHODS
-    public void fire(String aim, ShipBoard shipBoard) {
+    public void fire(String aim) {
         if (fireRecord == null) {
             firingBoardHits = new ArrayList<>();
             fireRecord = new ArrayList<>();
             fireRecord.add(aim);
-            impact(aim, shipBoard);
+            impact(aim);
         }
         else {
             for (String shot : fireRecord) {
@@ -29,22 +35,22 @@ public class FiringBoard {
                     break;
                 } else {
                     fireRecord.add(aim);
-                    impact(aim, shipBoard);
+                    impact(aim);
                     break;
                 }
             }
         }
     }
     // TODO implement false message
-    public boolean impact(String aim, ShipBoard shipBoard) {
+    public boolean impact(String aim) {
         boolean result = false;
-        for (ArrayList<String> boat : shipBoard.getShipBoard()){
+        for (List<String> boat : shipBoard.getShipBoard()){
 
             for (String b : boat) {
                 if (b.equals(aim)) {
                     firingBoardHits.add("X-" + aim);
                     System.out.println("That round hit a ship! " + aim);
-                    hit(aim, shipBoard);
+                    hit(aim);
                     result = true;
                     break;
 
@@ -59,8 +65,8 @@ public class FiringBoard {
         return result;
     }
 
-    private void hit(String guess, ShipBoard shipBoard) {
-        for (ArrayList<String> boat : shipBoard.getShipBoard()){
+    private void hit(String guess) {
+        for (List<String> boat : shipBoard.getShipBoard()){
             boat.remove(guess);
         }
     }

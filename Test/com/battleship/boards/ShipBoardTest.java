@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShipBoardTest {
 
@@ -17,7 +18,7 @@ public class ShipBoardTest {
     @Test
     public void allShipsSunk_shouldAssertFalse_whenAShipIsPresent() {
         ShipBoard shipBoard = new ShipBoard();
-        ArrayList<String> ship = new ArrayList<>();
+        List<String> ship = new ArrayList<>();
         ship.add("12");
         shipBoard.placeShip(ship);
         Assert.assertFalse(shipBoard.allShipsSunk());
@@ -26,8 +27,8 @@ public class ShipBoardTest {
     @Test
     public void isValidPlacement_shouldReturnFalse_whenShipsOverlap(){
         ShipBoard shipBoard = new ShipBoard();
-        ArrayList<String> ship = new ArrayList<>();
-        ArrayList<String> ship2 = new ArrayList<>();
+        List<String> ship = new ArrayList<>();
+        List<String> ship2 = new ArrayList<>();
         ship.add("a1");
         ship.add("b1");
         shipBoard.placeShip(ship);
@@ -39,8 +40,8 @@ public class ShipBoardTest {
     @Test
     public void isValidPlacement_shouldReturnTrue_whenShipsDoNotOverlap(){
         ShipBoard shipBoard = new ShipBoard();
-        ArrayList<String> ship = new ArrayList<>();
-        ArrayList<String> ship2 = new ArrayList<>();
+        List<String> ship = new ArrayList<>();
+        List<String> ship2 = new ArrayList<>();
         ship.add("a1");
         ship.add("b1");
         shipBoard.placeShip(ship);

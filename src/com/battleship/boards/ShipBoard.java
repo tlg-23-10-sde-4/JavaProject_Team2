@@ -1,14 +1,15 @@
 package com.battleship.boards;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShipBoard {
 
     //FIELDS
-    private ArrayList<ArrayList<String>> shipBoard;
-    private ArrayList<String> shipLocation;
+    private List<List<String>> shipBoard;
+    private List<String> shipLocation;
     //CONSTRUCTOR
-    public void placeShip(ArrayList<String> location) {
+    public void placeShip(List<String> location) {
             if (shipBoard == null) {
                 shipBoard = new ArrayList<>();
             }
@@ -19,7 +20,7 @@ public class ShipBoard {
     public boolean sink() {
         boolean result = false;
         System.out.println(shipBoard.size());
-        for (ArrayList<String> boat : shipBoard) {
+        for (List<String> boat : shipBoard) {
             if (boat.isEmpty()) {
                 shipBoard.remove(boat);
                 System.out.println("That ship is now sunk");
@@ -33,13 +34,13 @@ public class ShipBoard {
         return result;
     }
 
-    public boolean isValidPlacement(ArrayList<String> location) {
+    public boolean isValidPlacement(List<String> location) {
         boolean result = false;
         if (shipBoard== null){
             shipBoard = new ArrayList<>();
             result = true;
         }
-        for (ArrayList<String> shipList : shipBoard){
+        for (List<String> shipList : shipBoard){
             for (String ship : shipList){
                 if (!location.contains(ship)) {
                     result = true;
@@ -64,13 +65,13 @@ public class ShipBoard {
     }
 
     //ACCESSORS
-    public ArrayList<ArrayList<String>> getShipBoard() {
+    public List<List<String>> getShipBoard() {
         return shipBoard;
     }
 
 
     public void printBoard() {
-        for (ArrayList<String> boats : shipBoard) {
+        for (List<String> boats : shipBoard) {
             System.out.println(boats);
         }
     }
