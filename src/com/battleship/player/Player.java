@@ -78,7 +78,12 @@ public class Player {
     }
 
     private String getCoordinates(){
-        return scanner.next().trim().toUpperCase();
+        String coordinates;
+        do {
+            System.out.println("Use valid coordinates");
+            coordinates = scanner.next().trim().toUpperCase();
+        } while (!coordinates.matches(PATTERN));
+        return coordinates;
     }
 
     public String takeTurn() {
