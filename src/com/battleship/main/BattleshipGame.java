@@ -31,7 +31,7 @@ public class BattleshipGame {
         System.out.println("Player 2, place your ships:");
         player2.placeShips(player2Shipboard);
     }
-
+    //TODO make the change to check the new board
     // game round management
     public void playRounds() {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) { // alternate turns until a 'player' loses

@@ -18,29 +18,32 @@ public class ShipBoard {
 
     //METHODS
     // TODO need the boats to be fully removed from shipboard
-    public boolean sink(ShipBoard shipBoard) {
+    public boolean sink(ShipBoard boatLocation) {
         boolean result = false;
-        for (ArrayList<String> boat : shipBoard.getShipBoard()) {
-            System.out.println(boat.size());
-            System.out.println(shipBoard.getShipBoard().size());
-            if (boat.size() == 0) {
+        System.out.println(shipBoard.size());
+        for (ArrayList<String> boat : shipBoard) {
+            if (boat.isEmpty()) {
+                shipBoard.remove(boat);
+                System.out.println("That ship is now sunk");
                 result = true;
+                break;
             }
+            System.out.println(shipBoard.size());
         }
-        System.out.println(shipBoard.allShipsSunk());
+        System.out.println(shipBoard);
         return result;
     }
 
-    //TODO implement this so that the shipboard can update and remove the empty arrays that aren't being removed
-    private ArrayList<ArrayList<String>> removeEmptyArrays(ShipBoard shipBoard){
-        ArrayList<ArrayList<String>> updatedShipBoard = new ArrayList<>();
-        for (ArrayList<String> ship : shipBoard.getShipBoard()){
-            if (!ship.isEmpty()){
-                updatedShipBoard.add(ship);
-            }
-        }
-        return updatedShipBoard;
-    }
+//    //TODO implement this so that the shipboard can update and remove the empty arrays that aren't being removed
+//    private ArrayList<ArrayList<String>> removeEmptyArrays(ShipBoard shipBoard){
+//        ArrayList<ArrayList<String>> updatedShipBoard = new ArrayList<>();
+//        for (ArrayList<String> ship : shipBoard.getShipBoard()){
+//            if (!ship.isEmpty()){
+//                updatedShipBoard.add(ship);
+//            }
+//        }
+//        return updatedShipBoard;
+//    }
 
     // TODO still need to test if this is working properly now
     public boolean isValidPlacement(ArrayList<String> location) {
@@ -94,8 +97,6 @@ public class ShipBoard {
         }*/
         return result;
     }
-
-
 
     public boolean allShipsSunk() {
         return (shipBoard == null || shipBoard.isEmpty() || shipBoard.size() == 0);
