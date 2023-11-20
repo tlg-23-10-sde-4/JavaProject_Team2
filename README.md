@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>README for Battleship Console Game</title>
+    <title>README for Admirals Algorithm: Nautical Warfare</title>
 </head>
 <body>
 
-<h1>README for Battleship Console Game</h1>
+<h1>README for Admirals Algorithm: Nautical Warfare</h1>
 
 <h2>Overview</h2>
-<p>The Battleship Console Game is a Java-based implementation of the classic Battleship game. This game allows two players to place their ships on a grid and take turns to guess the location of the opponent's ships. The goal is to sink all of the opponent's ships.</p>
+<p>Admirals Algorithm: Nautical Warfare is a Java-based implementation of the classic Battleship game. This game allows two players to place their ships on a grid and take turns to guess the location of the opponent's ships. The goal is to sink all of the opponent's ships.</p>
 
 <h2>Features</h2>
 <ul>
@@ -36,10 +36,10 @@
     <li><strong>com.battleship.boards:</strong> Contains the FiringBoard and ShipBoard classes.</li>
 </ul>
 
-<h2>Installation Guide for Battleship Console Game</h2>
+<h2>Installation Guide for Admirals Algorithm: Nautical Warfare</h2>
 
 <h3>Prerequisites</h3>
-<p>Before installing and running the Battleship Console Game, ensure you have the following prerequisites installed on your system:</p>
+<p>Before installing and running Admirals Algorithm: Nautical Warfare, ensure you have the following prerequisites installed on your system:</p>
 <ul>
     <li><strong>Java Development Kit (JDK):</strong> The game is developed in Java, so you need to have the Java Development Kit installed. JDK 8 or higher is recommended. You can download it from Oracle's official website or use OpenJDK.</li>
     <li><strong>Integrated Development Environment (IDE):</strong> While not strictly necessary, using an IDE like IntelliJ IDEA, Eclipse, or NetBeans can simplify the process of compiling and running Java applications.</li>
