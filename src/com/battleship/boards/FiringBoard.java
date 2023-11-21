@@ -24,7 +24,7 @@ public class FiringBoard {
         else {
             for (String shot : fireRecord) {
                 if (aim.equals(shot)) {
-                    System.out.println("That grid has already been hit!");
+                    System.out.println("You have already shot that grid, now you have lost a turn due to your carelessness.");
                     break;
                 } else {
                     fireRecord.add(aim);
@@ -39,21 +39,15 @@ public class FiringBoard {
     public boolean impact(String aim) {
         boolean result = false;
         for (List<String> boat : shipBoard.getShipBoard()) {
-
             for (String b : boat) {
                 if (b.equals(aim)) {
                     firingBoardHits.add(aim);
+                    fireRecord.add(aim);
                     System.out.println("That round hit a ship! " + aim);
                     hit(aim);
                     result = true;
                     break;
-
-                } /*else {
-                    fireRecord.add(aim);
-                    System.out.println("That round hit water! " + aim);
-                    result = false;
-                    break;
-                }*/
+                }
             }
         }
         return result;
@@ -130,6 +124,10 @@ public class FiringBoard {
             default:
                 return " ";
         }
+    }
+
+    public List<String> getFireRecord() {
+        return fireRecord;
     }
 
     public List<String> getFiringBoardHits() {

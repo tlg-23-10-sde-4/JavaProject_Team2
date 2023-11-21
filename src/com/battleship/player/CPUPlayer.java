@@ -12,12 +12,12 @@ public class CPUPlayer extends Player{
     private static Random random;
     private static String previousHit;
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
-    private int shot = 0;
 
     public CPUPlayer() {
         random = new Random();
     }
 
+    @Override
     public void placeShips(ShipBoard shipBoard, FiringBoard firingBoard){
         List<String> thisGeneratedShip;
         for (ShipType ship : ShipType.values()){
@@ -33,7 +33,6 @@ public class CPUPlayer extends Player{
 
     private String getCoordinates(){
         String coordinates;
-
         do {
             char letter = (char) (random.nextInt(9) + ('a'));
             char number = (char) (random.nextInt(10)-1);
@@ -66,31 +65,29 @@ public class CPUPlayer extends Player{
         return random.nextBoolean();
     }
 
+    @Override
     public String takeTurn(FiringBoard firingBoard, ShipBoard shipBoard) {
 
         // rule-based shooting strategy
         String guess;
 
-        if (firingBoard.getFiringBoardHits() != null){
-            if (firingBoard.getCpuHit() != null) {
-                previousHit = firingBoard.getCpuHit();
-            }
-            else {
-                previousHit = null;
-            }
-        }
-
-        if (previousHit != null) {
-            System.out.println(previousHit);
+        if (firingBoard.getCpuHit() != null) {
+            previousHit = firingBoard.getCpuHit();
             do {
                 guess = generateNearbyTarget(previousHit, firingBoard);
             }while (!guess.matches(PATTERN));
         }
 
         else {
-            guess = getCoordinates();
+            if (firingBoard.getFireRecord() != null) {
+                do {
+                    guess = getCoordinates();
+                } while (firingBoard.getFireRecord().contains(guess));
+            }
+            else {
+                guess = getCoordinates();
+            }
         }
-
         return guess;
     }
 
@@ -100,47 +97,25 @@ public class CPUPlayer extends Player{
         char col = previousHit.charAt(1);
 
         // simple strategy, shoot above, below, left, or right of previous hit
-        int direction = random.nextInt(4);
-        if (previousHit.equals(firingBoard.getCpuHit())) {
-            do {
-                switch (direction) {
-                    case 0: // above
-                        guess = String.valueOf(row) + (col + '1');
-                        break;
-                    case 1: //below
-                        guess = String.valueOf(row) + (col - '1');
-                        break;
-                    case 2: // left
-                        guess = String.valueOf(row - '1') + col;
-                        break;
-                    case 3: //right
-                        guess = String.valueOf(row + '1') + col;
-                        break;
-                    default:
-                        return previousHit;
-                }
-            } while (shot != direction);
-        }
-        else {
+        do {
+            int direction = random.nextInt(4);
             switch (direction) {
                 case 0: // above
-                    guess = String.valueOf(row) + (col + '1');
+                    guess = String.valueOf(row) + (col += 1);
                     break;
                 case 1: //below
-                    guess = String.valueOf(row) + (col - '1');
+                    guess = String.valueOf(row) + (col -= 1);
                     break;
                 case 2: // left
-                    guess = String.valueOf(row - '1') + col;
+                    guess = String.valueOf(row -= 1) + col;
                     break;
                 case 3: //right
-                    guess = String.valueOf(row + '1') + col;
+                    guess = String.valueOf(row += 1) + col;
                     break;
                 default:
                     return previousHit;
             }
-            shot = direction;
-            }
+        } while (firingBoard.getFireRecord().contains(guess)) ;
             return guess;
         }
-
 }
