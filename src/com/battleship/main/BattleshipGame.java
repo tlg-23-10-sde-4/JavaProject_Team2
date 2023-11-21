@@ -21,11 +21,11 @@ public class BattleshipGame {
     private final FiringBoard player1FiringBoard = new FiringBoard(player2Shipboard);
     private final FiringBoard player2FiringBoard = new FiringBoard(player1Shipboard);
     private boolean isCPUPlaying = false;
-    private String bannerDirectory = "JavaProject_Team2/banners/";
+    private String bannerDirectory = "src/banners/";
 
     public BattleshipGame() throws IOException {
-        player1 = new Player();
         showBanner("banner_for_battleship.txt");
+        player1 = new Player();
         System.out.println("Will this be a 1 player game? i.e., (true or false)");
         Scanner scanner = new Scanner(System.in);
         String choice;
@@ -66,13 +66,16 @@ public class BattleshipGame {
 
     private void showBanner(String bannerFileName) throws IOException {
         Path filepath = Path.of(bannerDirectory + bannerFileName);
-        try {
-            String bannerContent = Files.readString(filepath);
-            System.out.println(bannerContent);
+        if (Files.exists(Path.of(bannerDirectory + bannerFileName))) {
+            try {
+                String bannerContent = Files.readString(filepath);
+                System.out.println(bannerContent);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     // ship placement management
@@ -110,6 +113,7 @@ public class BattleshipGame {
             }
 
             if (player2Shipboard.allShipsSunk()) {
+                showBanner("end_game_banner.txt");
                 System.out.println("Player 1 has won!");
                 break;
             }
@@ -129,6 +133,7 @@ public class BattleshipGame {
             }
 
             if (player1Shipboard.allShipsSunk()) {
+                showBanner("end_game_banner.txt");
                 System.out.println("Player 2 has won!");
                 break;
             }
@@ -156,12 +161,12 @@ public class BattleshipGame {
     private void clearConsole() throws IOException {
         if (isCPUPlaying){
         Console.clear();
-        showBanner("switching_player_banner");
+        showBanner("switching_player_banner.txt");
         //Console.pause(1000);
         Console.clear();}
         else {
             Console.clear();
-            showBanner("switching_player_banner");
+            showBanner("switching_player_banner.txt");
             Console.pause(3000);
             Console.clear();
         }
