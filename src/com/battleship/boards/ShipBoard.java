@@ -5,7 +5,6 @@ import java.util.List;
 
 public class ShipBoard {
     private List<List<String>> shipBoard;
-    private List<String> shipLocation;
 
     public void placeShip(List<String> location) {
             if (shipBoard == null) {
@@ -17,7 +16,6 @@ public class ShipBoard {
     // check to see if ship is sunk
     public boolean sink() {
         boolean result = false;
-        System.out.println(shipBoard.size());
         for (List<String> boat : shipBoard) {
             if (boat.isEmpty()) {
                 shipBoard.remove(boat);
@@ -55,7 +53,11 @@ public class ShipBoard {
     public void printShipBoard(FiringBoard firingBoard) {
         char[][] board = displayShipBoard(firingBoard);
         for (char[] chars : board) {
-            System.out.println(chars);
+            List<String> tempBoardList = new ArrayList<>();
+            for (char c : chars){
+                tempBoardList.add(color(c));
+            }
+            System.out.println(tempBoardList);
         }
     }
 
@@ -77,12 +79,11 @@ public class ShipBoard {
         if (shipBoard != null) {
             for (List<String> boat : shipBoard) {
                 for (String b : boat) {
-                    System.out.println(b);
                     char row = b.charAt(0);
                     char col = b.charAt(1);
                     int colInt = col - '1';
                     int rowInt = (row - 'a' + 1) - 1;
-                    board[rowInt][colInt] = 'S';
+                    board[rowInt][colInt + 1] = 'S';
                 }
             }
         }
@@ -92,11 +93,28 @@ public class ShipBoard {
                 char col = record.charAt(1);
                 int colInt = col - '1';
                 int rowInt = (row - 'a' + 1) - 1;
-                board[rowInt][colInt] = 'X';
+                board[rowInt][colInt + 1] = 'X';
             }
         }
 
         return board;
+    }
+    private String color(char grid) {
+        String resetColor = "\u001B[0m";
+        String red = "\u001B[31m";
+        String cyan = "\u001B[36m";
+        String gray = "\u001B[90m";
+
+        switch (grid){
+            case '-':
+                return cyan + grid + resetColor;
+            case 'X':
+                return red + grid + resetColor;
+            case 'S':
+                return gray + grid +resetColor;
+            default:
+                return " ";
+        }
     }
 
     // check to see if any ships remaining

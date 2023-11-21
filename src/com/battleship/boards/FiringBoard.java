@@ -7,7 +7,6 @@ public class FiringBoard {
     private List<String> fireRecord;
     private List<String> firingBoardHits;
     private final ShipBoard shipBoard;
-    private String aiming;
 
     public FiringBoard(ShipBoard shipBoard) {
         this.shipBoard = shipBoard;
@@ -70,7 +69,11 @@ public class FiringBoard {
     public void printFiringBoard() {
         char[][] board = displayFiringBoard();
         for (char[] chars : board) {
-            System.out.println(chars);
+            List<String> tempBoardList = new ArrayList<>();
+            for (char c : chars){
+                tempBoardList.add(color(c));
+            }
+            System.out.println(tempBoardList);
         }
     }
 
@@ -95,7 +98,7 @@ public class FiringBoard {
                 char col = record.charAt(1);
                 int colInt = col - '1';
                 int rowInt = (row - 'a' + 1) - 1;
-                board[rowInt][colInt] = 'M';
+                board[rowInt][colInt + 1] = 'M';
             }
 
             for (String record : firingBoardHits) {
@@ -103,10 +106,28 @@ public class FiringBoard {
                 char col = record.charAt(1);
                 int colInt = col - '1';
                 int rowInt = (row - 'a' + 1) - 1;
-                board[rowInt][colInt] = 'H';
+                board[rowInt][colInt + 1] = 'H';
             }
         }
         return board;
+    }
+
+    private String color(char grid) {
+        String resetColor = "\u001B[0m";
+        String red = "\u001B[31m";
+        String cyan = "\u001B[36m";
+        String gray = "\u001B[90m";
+
+        switch (grid){
+            case '-':
+                return cyan + grid + resetColor;
+            case 'H':
+                return red + grid + resetColor;
+            case 'M':
+                return gray + grid +resetColor;
+            default:
+                return " ";
+        }
     }
 
     public List<String> getFiringBoardHits() {
