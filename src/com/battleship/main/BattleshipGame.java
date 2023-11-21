@@ -21,11 +21,12 @@ public class BattleshipGame {
     private final FiringBoard player1FiringBoard = new FiringBoard(player2Shipboard);
     private final FiringBoard player2FiringBoard = new FiringBoard(player1Shipboard);
     private boolean isCPUPlaying = false;
-    private static final String bannerFileLocation = "banners/banner_for_battleship.txt";
+    private String bannerDirectory = "/JavaProject_Team2/banners";
 
 
-    public BattleshipGame() {
+    public BattleshipGame() throws IOException {
         player1 = new Player();
+        showBanner("banner_for_battleship.txt");
         System.out.println("Will this be a 1 player game? i.e., (true or false)");
         Scanner scanner = new Scanner(System.in);
         String choice;
@@ -54,7 +55,7 @@ public class BattleshipGame {
 
     // game starts with option to view tutorial first
     public void startGame() throws IOException {
-        showBanner();
+        showBanner("startGameBanner");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to see the tutorial? (yes/no)");
         String response = scanner.nextLine().trim().toLowerCase();
@@ -65,16 +66,18 @@ public class BattleshipGame {
         playRounds();
     }
 
-    private void showBanner() throws IOException {
+    private void showBanner(String bannerFileName) throws IOException {
+        Path filepath = Path.of(bannerDirectory + bannerFileName);
         try {
-            Files.readString(Path.of(bannerFileLocation));
+            String bannerContent = Files.readString(filepath);
+            System.out.println(bannerContent);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     // ship placement management
-    private void placeShipsForPlayers() {
+    private void placeShipsForPlayers() throws IOException {
         System.out.println("Player 1, place your ships:");
         player1.placeShips(player1Shipboard, player2FiringBoard);
         clearConsole();
@@ -85,14 +88,14 @@ public class BattleshipGame {
     }
 
     // game round management
-    public void playRounds() {
+    public void playRounds() throws IOException {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) {
             takeTurns(player1, player2);
         }
     }
 
     // player turn management
-    private void takeTurns(Player player1, Player player2) {
+    private void takeTurns(Player player1, Player player2) throws IOException {
         while (!player1Shipboard.allShipsSunk() && !player2Shipboard.allShipsSunk()) {
             System.out.println("Player 1's shipBoard.");
             player1Shipboard.printShipBoard(player2FiringBoard);
@@ -151,15 +154,15 @@ public class BattleshipGame {
         System.out.println("-------------------------------");
     }
 
-    private void clearConsole() {
+    private void clearConsole() throws IOException {
         if (isCPUPlaying){
         Console.clear();
-        System.out.println("switching players...");
+        showBanner("switching_player_banner");
         //Console.pause(1000);
         Console.clear();}
         else {
             Console.clear();
-            System.out.println("switching players...");
+            showBanner("switching_player_banner");
             Console.pause(3000);
             Console.clear();
         }
