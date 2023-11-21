@@ -8,7 +8,6 @@ import com.battleship.ship.ShipType;
 
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Player {
@@ -89,7 +88,7 @@ public class Player {
         return coordinates;
     }
 
-    public String takeTurn() {
+    public String takeTurn(FiringBoard firingBoard, ShipBoard shipBoard) {
         System.out.println("Enter your firing coordinate (e.g., B7): ");
         guess = getCoordinates();
 
@@ -103,4 +102,5 @@ public class Player {
     public static String getGuess() {
         return guess;
     }
+
 }
