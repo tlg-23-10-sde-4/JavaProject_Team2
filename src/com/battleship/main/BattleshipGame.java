@@ -21,8 +21,7 @@ public class BattleshipGame {
     private final FiringBoard player1FiringBoard = new FiringBoard(player2Shipboard);
     private final FiringBoard player2FiringBoard = new FiringBoard(player1Shipboard);
     private boolean isCPUPlaying = false;
-    private String bannerDirectory = "/JavaProject_Team2/banners";
-
+    private String bannerDirectory = "JavaProject_Team2/banners/";
 
     public BattleshipGame() throws IOException {
         player1 = new Player();
@@ -55,7 +54,6 @@ public class BattleshipGame {
 
     // game starts with option to view tutorial first
     public void startGame() throws IOException {
-        showBanner("startGameBanner");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to see the tutorial? (yes/no)");
         String response = scanner.nextLine().trim().toLowerCase();
@@ -71,7 +69,8 @@ public class BattleshipGame {
         try {
             String bannerContent = Files.readString(filepath);
             System.out.println(bannerContent);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
