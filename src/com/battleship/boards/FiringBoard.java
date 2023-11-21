@@ -7,6 +7,7 @@ public class FiringBoard {
     private List<String> fireRecord;
     private List<String> firingBoardHits;
     private final ShipBoard shipBoard;
+    public String cpuHit;
 
     public FiringBoard(ShipBoard shipBoard) {
         this.shipBoard = shipBoard;
@@ -47,12 +48,12 @@ public class FiringBoard {
                     result = true;
                     break;
 
-                } else {
+                } /*else {
                     fireRecord.add(aim);
                     System.out.println("That round hit water! " + aim);
                     result = false;
                     break;
-                }
+                }*/
             }
         }
         return result;
@@ -61,6 +62,7 @@ public class FiringBoard {
     // hit removes grid spot
     private void hit(String guess) {
         for (List<String> boat : shipBoard.getShipBoard()) {
+            cpuHit = guess;
             boat.remove(guess);
         }
     }
@@ -115,12 +117,12 @@ public class FiringBoard {
     private String color(char grid) {
         String resetColor = "\u001B[0m";
         String red = "\u001B[31m";
-        String cyan = "\u001B[36m";
+        String blue = "\u001B[36m";
         String gray = "\u001B[90m";
 
         switch (grid){
             case '-':
-                return cyan + grid + resetColor;
+                return blue + grid + resetColor;
             case 'H':
                 return red + grid + resetColor;
             case 'M':
@@ -132,5 +134,9 @@ public class FiringBoard {
 
     public List<String> getFiringBoardHits() {
         return firingBoardHits;
+    }
+
+    public String getCpuHit() {
+        return cpuHit;
     }
 }

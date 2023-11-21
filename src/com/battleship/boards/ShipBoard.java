@@ -102,12 +102,12 @@ public class ShipBoard {
     private String color(char grid) {
         String resetColor = "\u001B[0m";
         String red = "\u001B[31m";
-        String cyan = "\u001B[36m";
+        String blue = "\u001B[36m";
         String gray = "\u001B[90m";
 
         switch (grid){
             case '-':
-                return cyan + grid + resetColor;
+                return blue + grid + resetColor;
             case 'X':
                 return red + grid + resetColor;
             case 'S':
