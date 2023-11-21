@@ -40,16 +40,11 @@ public class Player {
         String word = "";
         System.out.println("Ship horizontal? (true/false)");
 
-        do {
-            word = scanner.next().trim();
-            if (word.equals("t") || word.equals("T")) {
-                word = "true";
-            }
-            if (word.equals("f") || word.equals("F")) {
-                word = "false";
-            }
-            result = Boolean.parseBoolean(word);
-        } while (result != true || false);
+        word = scanner.next().trim().toLowerCase();
+        if (word.equals("t")) {
+            word = "true";
+        }
+        result = Boolean.parseBoolean(word);
         return result;
     }
 

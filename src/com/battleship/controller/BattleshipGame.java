@@ -63,6 +63,7 @@ public class BattleshipGame {
             response = scanner.next();
             Console.clear();
         }
+        Console.clear();
         placeShipsForPlayers();
         playRounds();
     }
