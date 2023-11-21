@@ -12,7 +12,7 @@ public class CPUPlayer extends Player{
     private static Random random;
     private static String previousHit;
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
-    private final String shot = null;
+    private int shot = 0;
 
     public CPUPlayer() {
         random = new Random();
@@ -71,10 +71,8 @@ public class CPUPlayer extends Player{
         // rule-based shooting strategy
         String guess;
 
-        guess = getCoordinates();
-
         if (firingBoard.getFiringBoardHits() != null){
-            if (previousHit == null) {
+            if (firingBoard.getCpuHit() != null) {
                 previousHit = firingBoard.getCpuHit();
             }
             else {
@@ -82,14 +80,13 @@ public class CPUPlayer extends Player{
             }
         }
 
-        // Rule 1: If there was a hit, target nearby locations
         if (previousHit != null) {
+            System.out.println(previousHit);
             do {
-                guess = generateNearbyTarget(previousHit);
+                guess = generateNearbyTarget(previousHit, firingBoard);
             }while (!guess.matches(PATTERN));
         }
 
-        // Rule 2: On the first turn or no hits, shoot randomly
         else {
             guess = getCoordinates();
         }
@@ -97,32 +94,53 @@ public class CPUPlayer extends Player{
         return guess;
     }
 
-    private String generateNearbyTarget(String previousHit) {
-        String guess;
+    private String generateNearbyTarget(String previousHit, FiringBoard firingBoard) {
+        String guess = null;
         char row = previousHit.charAt(0);
         char col = previousHit.charAt(1);
 
         // simple strategy, shoot above, below, left, or right of previous hit
         int direction = random.nextInt(4);
-        switch (direction) {
-            case 0: // above
-                guess = String.valueOf(row) + (col + 1);
-                break;
-            case 1: //below
-                guess = String.valueOf(row)+ (col - 1);
-                break;
-            case 2: // left
-                guess = String.valueOf(row -1) + col;
-                break;
-            case 3: //right
-                guess = String.valueOf(row + 1) + col;
-                break;
-            default:
-                return previousHit;
-
+        if (previousHit.equals(firingBoard.getCpuHit())) {
+            do {
+                switch (direction) {
+                    case 0: // above
+                        guess = String.valueOf(row) + (col + '1');
+                        break;
+                    case 1: //below
+                        guess = String.valueOf(row) + (col - '1');
+                        break;
+                    case 2: // left
+                        guess = String.valueOf(row - '1') + col;
+                        break;
+                    case 3: //right
+                        guess = String.valueOf(row + '1') + col;
+                        break;
+                    default:
+                        return previousHit;
+                }
+            } while (shot != direction);
         }
-        return guess;
-    }
-
+        else {
+            switch (direction) {
+                case 0: // above
+                    guess = String.valueOf(row) + (col + '1');
+                    break;
+                case 1: //below
+                    guess = String.valueOf(row) + (col - '1');
+                    break;
+                case 2: // left
+                    guess = String.valueOf(row - '1') + col;
+                    break;
+                case 3: //right
+                    guess = String.valueOf(row + '1') + col;
+                    break;
+                default:
+                    return previousHit;
+            }
+            shot = direction;
+            }
+            return guess;
+        }
 
 }
