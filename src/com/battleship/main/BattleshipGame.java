@@ -6,6 +6,9 @@ import com.battleship.boards.ShipBoard;
 import com.battleship.player.CPUPlayer;
 import com.battleship.player.Player;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -18,6 +21,7 @@ public class BattleshipGame {
     private final FiringBoard player1FiringBoard = new FiringBoard(player2Shipboard);
     private final FiringBoard player2FiringBoard = new FiringBoard(player1Shipboard);
     private boolean isCPUPlaying = false;
+    private static final String bannerFileLocation = "banners/banner_for_battleship.txt";
 
 
     public BattleshipGame() {
@@ -49,7 +53,8 @@ public class BattleshipGame {
     }
 
     // game starts with option to view tutorial first
-    public void startGame() {
+    public void startGame() throws IOException {
+        showBanner();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to see the tutorial? (yes/no)");
         String response = scanner.nextLine().trim().toLowerCase();
@@ -58,6 +63,14 @@ public class BattleshipGame {
         }
         placeShipsForPlayers();
         playRounds();
+    }
+
+    private void showBanner() throws IOException {
+        try {
+            Files.readString(Path.of(bannerFileLocation));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // ship placement management
