@@ -8,7 +8,7 @@ import com.battleship.ship.ShipType;
 import java.util.List;
 import java.util.Random;
 
-public class CPUPlayer extends Player{
+public class CPUPlayer extends Player {
     private static Random random;
     private static String previousHit;
     private static final String PATTERN = "[a-jA-J]{1}[0-9]{1}";
@@ -17,21 +17,23 @@ public class CPUPlayer extends Player{
         random = new Random();
     }
 
+    // CPU places ships
     @Override
-    public void placeShips(ShipBoard shipBoard, FiringBoard firingBoard){
+    public void placeShips(ShipBoard shipBoard, FiringBoard firingBoard) {
         List<String> thisGeneratedShip;
-        for (ShipType ship : ShipType.values()){
+        for (ShipType ship : ShipType.values()) {
             System.out.println("CPU is placing " + ship.getName());
             thisGeneratedShip = generateShip(ship, shipBoard);
             System.out.println(thisGeneratedShip);
-            if (isValidBuild(thisGeneratedShip)){
+            if (isValidBuild(thisGeneratedShip)) {
                 shipBoard.placeShip(thisGeneratedShip);
                 System.out.println("CPU placed " + ship.getName());
             }
         }
     }
 
-    private String getCoordinates(){
+    // CPU gets valid coordinates
+    private String getCoordinates() {
         String coordinates;
         do {
             char letter = (char) (random.nextInt(9) + ('a'));
@@ -43,7 +45,8 @@ public class CPUPlayer extends Player{
         return coordinates;
     }
 
-    private List<String> generateShip(ShipType ship, ShipBoard shipBoard){
+    // CPU creates valid ships
+    private List<String> generateShip(ShipType ship, ShipBoard shipBoard) {
         String shipPlacement;
         boolean isHorizontal;
         List<String> shipGenerated;
@@ -57,17 +60,16 @@ public class CPUPlayer extends Player{
             shipPlacement = getCoordinates();
             isHorizontal = isShipHorizontal();
             shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
-        }while (!isValidBuild(shipGenerated));
+        } while (!isValidBuild(shipGenerated));
         return shipGenerated;
     }
 
-    private boolean isShipHorizontal(){
+    private boolean isShipHorizontal() {
         return random.nextBoolean();
     }
 
     @Override
     public String takeTurn(FiringBoard firingBoard, ShipBoard shipBoard) {
-
         // rule-based shooting strategy
         String guess;
 
@@ -90,7 +92,7 @@ public class CPUPlayer extends Player{
         }
         return guess;
     }
-
+    // If CPU hits a ship, it will pick a random grid right next to it
     private String generateNearbyTarget(String previousHit, FiringBoard firingBoard) {
         String guess = null;
         char row = previousHit.charAt(0);
@@ -115,7 +117,7 @@ public class CPUPlayer extends Player{
                 default:
                     return previousHit;
             }
-        } while (firingBoard.getFireRecord().contains(guess)) ;
+        } while (firingBoard.getFireRecord().contains(guess));
             return guess;
         }
 }

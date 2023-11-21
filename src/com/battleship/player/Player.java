@@ -49,12 +49,11 @@ public class Player {
                 word = "false";
             }
             result = Boolean.parseBoolean(word);
-
-        }
-        while (result != true || false);
+        } while (result != true || false);
         return result;
     }
 
+    // validates coordinates
     public boolean isValidBuild(List<String> ship) {
         boolean result = false;
         for (String s : ship) {
@@ -75,8 +74,6 @@ public class Player {
             isHorizontal = isShipHorizontal();
             shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
         } while (!shipBoard.isValidPlacement(shipGenerated));
-
-
         return shipGenerated;
     }
 
@@ -106,5 +103,4 @@ public class Player {
     public static String getGuess() {
         return guess;
     }
-
 }

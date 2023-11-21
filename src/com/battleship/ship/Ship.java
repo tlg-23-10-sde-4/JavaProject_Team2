@@ -12,6 +12,7 @@ public class Ship {
         this.hits = 0;
     }
 
+    // Creates the ships based off of user start grid
     public static List<String> generateShipPlacement(ShipType shipType, String location, boolean isHorizontal) {
         List<String> shipCoordinates = new ArrayList<>();
         int size = shipType.getSize();

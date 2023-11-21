@@ -30,7 +30,7 @@
 <h2>Classes and Packages</h2>
 <ul>
     <li><strong>com.battleship.client.Main:</strong> The entry point of the game.</li>
-    <li><strong>com.battleship.main.BattleshipGame:</strong> Contains the main game logic.</li>
+    <li><strong>com.battleship.controller.BattleshipGame:</strong> Contains the main game logic.</li>
     <li><strong>com.battleship.player.Player:</strong> Represents a player in the game.</li>
     <li><strong>com.battleship.ship:</strong> Contains the Ship class and ShipType enum.</li>
     <li><strong>com.battleship.boards:</strong> Contains the FiringBoard and ShipBoard classes.</li>
