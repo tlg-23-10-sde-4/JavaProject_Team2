@@ -39,7 +39,8 @@ public class Player {
         boolean result = false;
         String word = "";
         System.out.println("Ship horizontal? (true/false)");
-        try {
+
+        do {
             word = scanner.next().trim();
             if (word.equals("t") || word.equals("T")) {
                 word = "true";
@@ -48,10 +49,9 @@ public class Player {
                 word = "false";
             }
             result = Boolean.parseBoolean(word);
+
         }
-        catch (InputMismatchException e) {
-            System.out.println("true or false");
-        }
+        while (result != true || false);
         return result;
     }
 
@@ -76,6 +76,7 @@ public class Player {
             shipGenerated = Ship.generateShipPlacement(ship, shipPlacement, isHorizontal);
         } while (!shipBoard.isValidPlacement(shipGenerated));
 
+
         return shipGenerated;
     }
 
@@ -84,6 +85,9 @@ public class Player {
         do {
             System.out.println("Valid coordinates = [A-J] [0-9] (e.g., A9).");
             coordinates = scanner.next().trim().toLowerCase();
+            if (!coordinates.matches(PATTERN)) {
+                System.out.println("Please try again!");
+            }
         } while (!coordinates.matches(PATTERN));
         return coordinates;
     }
