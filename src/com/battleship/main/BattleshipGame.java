@@ -7,6 +7,7 @@ import com.battleship.player.CPUPlayer;
 import com.battleship.player.Player;
 
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class BattleshipGame {
@@ -47,7 +48,14 @@ public class BattleshipGame {
         }
     }
 
+    // game starts with option to view tutorial first
     public void startGame() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to see the tutorial? (yes/no)");
+        String response = scanner.nextLine().trim().toLowerCase();
+        if (response.equals("yes")) {
+            showTutorial();
+        }
         placeShipsForPlayers();
         playRounds();
     }
@@ -111,6 +119,23 @@ public class BattleshipGame {
             }
             clearConsole();
         }
+    }
+
+    public void showTutorial() {
+        System.out.println("Welcome to Admirals Algorithm: Nautical Warfare!");
+        System.out.println("-------------------------------");
+        System.out.println("Tutorial:");
+        System.out.println("1. The game is played on a 10x10 grid, where each player has their own grid.");
+        System.out.println("2. Each player places a set of ships on their grid in secret.");
+        System.out.println("3. The ships can be placed horizontally or vertically.");
+        System.out.println("4. Players take turns to 'fire' at the opponent's grid by calling out grid coordinates (e.g., A5, B6).");
+        System.out.println("5. The opponent must announce whether the shot hit or missed. In this game, it's done automatically.");
+        System.out.println("6. The goal is to sink all of the opponent's ships by hitting each square they occupy.");
+        System.out.println("7. The first player to sink all of the opponent's ships wins the game.");
+        System.out.println("8. During your turn, enter the coordinates for your shot (e.g., B7).");
+        System.out.println("9. The game board uses '-' to represent water, 'S' for ships, 'H' for hits, and 'M' for misses.");
+        System.out.println("10. Enjoy the game and may the best strategist win!");
+        System.out.println("-------------------------------");
     }
 
     private void clearConsole() {
