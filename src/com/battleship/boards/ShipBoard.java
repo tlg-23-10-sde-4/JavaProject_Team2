@@ -64,16 +64,17 @@ public class ShipBoard {
     // displays new ShipBoard
     private char[][] displayShipBoard(FiringBoard firingBoard) {
         char[][] board = {
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
-                {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'*', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',},
+                {'a', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'b', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'c', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'d', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'e', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'f', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'g', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'h', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'i', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
+                {'j', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-',},
         };
 
         if (shipBoard != null) {
@@ -81,8 +82,8 @@ public class ShipBoard {
                 for (String b : boat) {
                     char row = b.charAt(0);
                     char col = b.charAt(1);
-                    int colInt = col - '1';
-                    int rowInt = (row - 'a' + 1) - 1;
+                    int colInt = (col - '1') + 1;
+                    int rowInt = (row - 'a' + 1);
                     board[rowInt][colInt + 1] = 'S';
                 }
             }
@@ -91,8 +92,8 @@ public class ShipBoard {
             for (String record : firingBoard.getFiringBoardHits()) {
                 char row = record.charAt(0);
                 char col = record.charAt(1);
-                int colInt = col - '1';
-                int rowInt = (row - 'a' + 1) - 1;
+                int colInt = (col - '1') + 1;
+                int rowInt = (row - 'a' + 1);
                 board[rowInt][colInt + 1] = 'X';
             }
         }
@@ -114,7 +115,8 @@ public class ShipBoard {
             case 'S':
                 return gray + grid +resetColor;
             default:
-                return " ";
+                String var = String.valueOf(grid);
+                return var;
         }
     }
 
