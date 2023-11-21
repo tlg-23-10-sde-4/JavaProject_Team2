@@ -24,7 +24,7 @@ public class FiringBoard {
         else {
             for (String shot : fireRecord) {
                 if (aim.equals(shot)) {
-                    System.out.println("Big dummy, you already shot that grid! Now you lost your turn...");
+                    System.out.println("You have already shot that grid, now you have lost a turn due to your carelessness.");
                     break;
                 } else {
                     fireRecord.add(aim);
