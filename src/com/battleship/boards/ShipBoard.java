@@ -96,16 +96,17 @@ public class ShipBoard {
                 board[rowInt][colInt + 1] = 'X';
             }
         }
-
         return board;
     }
+
+    // changes font color for board
     private String color(char grid) {
         String resetColor = "\u001B[0m";
         String red = "\u001B[31m";
         String blue = "\u001B[36m";
         String gray = "\u001B[90m";
 
-        switch (grid){
+        switch (grid) {
             case '-':
                 return blue + grid + resetColor;
             case 'X':

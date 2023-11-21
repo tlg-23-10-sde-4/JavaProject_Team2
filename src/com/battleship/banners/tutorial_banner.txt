@@ -1,0 +1,21 @@
+Tutorial:
+
+1. The game is played on a 10x10 grid, where each player has their own grid.
+
+2. Each player places a set of ships on their grid in secret.
+
+3. The ships can be placed horizontally or vertically.
+
+4. Players take turns to 'fire' at the opponent's grid by calling out grid coordinates (e.g., A5, B6).
+
+5. The opponent must announce whether the shot hit or missed. In this game, it's done automatically.
+
+6. The goal is to sink all of the opponent's ships by hitting each square they occupy.
+
+7. The first player to sink all of the opponent's ships wins the game.
+
+8. During your turn, enter the coordinates for your shot (e.g., B7).
+
+9. The game board uses '-' to represent water, 'S' for ships, 'H' for hits, and 'M' for misses.
+
+10. Enjoy the game and may the best strategist win!
