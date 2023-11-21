@@ -6,6 +6,7 @@ import com.battleship.boards.ShipBoard;
 import com.battleship.player.CPUPlayer;
 import com.battleship.player.Player;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BattleshipGame {
@@ -15,13 +16,35 @@ public class BattleshipGame {
     private final ShipBoard player2Shipboard = new ShipBoard();
     private final FiringBoard player1FiringBoard = new FiringBoard(player2Shipboard);
     private final FiringBoard player2FiringBoard = new FiringBoard(player1Shipboard);
+    private boolean isCPUPlaying = false;
+
 
     public BattleshipGame() {
         player1 = new Player();
         System.out.println("Will this be a 1 player game? i.e., (true or false)");
         Scanner scanner = new Scanner(System.in);
-        boolean choice = scanner.nextBoolean();
-        player2 = choice ? new CPUPlayer() : new Player();
+        String choice;
+        boolean result = false;
+        try {
+            choice = scanner.next().trim();
+            if (choice.equals("t") || choice.equals("T")) {
+                choice = "true";
+            }
+            if (choice.equals("f") || choice.equals("F")) {
+                choice = "false";
+            }
+            result = Boolean.parseBoolean(choice);
+        }
+        catch (InputMismatchException e) {
+            System.out.println("true or false");
+        }
+        if (result) {
+            player2 = new CPUPlayer();
+            isCPUPlaying = true;
+        }
+        else {
+            player2 =new Player();
+        }
     }
 
     public void startGame() {
@@ -33,11 +56,11 @@ public class BattleshipGame {
     private void placeShipsForPlayers() {
         System.out.println("Player 1, place your ships:");
         player1.placeShips(player1Shipboard, player2FiringBoard);
-        //clearConsole();
+        clearConsole();
 
         System.out.println("Player 2, place your ships:");
         player2.placeShips(player2Shipboard, player1FiringBoard);
-        //clearConsole();
+        clearConsole();
     }
 
     // game round management
@@ -67,7 +90,7 @@ public class BattleshipGame {
                 System.out.println("Player 1 has won!");
                 break;
             }
-            //clearConsole();
+            clearConsole();
 
             System.out.println("Player 2's shipBoard.");
             player2Shipboard.printShipBoard(player1FiringBoard);
@@ -86,14 +109,21 @@ public class BattleshipGame {
                 System.out.println("Player 2 has won!");
                 break;
             }
-            //clearConsole();
+            clearConsole();
         }
     }
 
     private void clearConsole() {
+        if (isCPUPlaying){
         Console.clear();
         System.out.println("switching players...");
-        Console.pause(3000);
-        Console.clear();
+        //Console.pause(1000);
+        Console.clear();}
+        else {
+            Console.clear();
+            System.out.println("switching players...");
+            Console.pause(3000);
+            Console.clear();
+        }
     }
 }
