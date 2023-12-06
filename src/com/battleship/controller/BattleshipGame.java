@@ -111,9 +111,13 @@ public class BattleshipGame {
 
             System.out.println("Player 1's turn to fire: ");
             player1FiringBoard.fire(player1.takeTurn(player1FiringBoard, player2Shipboard));
-
+            if (player1FiringBoard.impact(Player.getGuess())) {
+                System.out.println("that round hit a ship!");
+                Console.pause(1500);
+            }
             if (player2Shipboard.sink()) {
                 System.out.println("Player 2's ship has been sunk!");
+                Console.pause(2000);
             }
             if (player2Shipboard.allShipsSunk()) {
                 showBanner("end_game_banner.txt");
@@ -133,6 +137,7 @@ public class BattleshipGame {
 
             if (player1Shipboard.sink()) {
                 System.out.println("Player 1's ship has been sunk!");
+                Console.pause(2000);
             }
             if (player1Shipboard.allShipsSunk()) {
                 showBanner("end_game_banner.txt");

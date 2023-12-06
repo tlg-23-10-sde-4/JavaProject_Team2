@@ -1,5 +1,7 @@
 package com.battleship.boards;
 
+import com.apps.util.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +45,8 @@ public class FiringBoard {
                 if (b.equals(aim)) {
                     firingBoardHits.add(aim);
                     fireRecord.add(aim);
-                    System.out.println("That round hit a ship! " + aim);
+                    System.out.println("That round hit a ship!" + aim);
+                    Console.pause(1500);
                     hit(aim);
                     result = true;
                     break;

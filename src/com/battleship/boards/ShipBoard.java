@@ -1,5 +1,7 @@
 package com.battleship.boards;
 
+import com.apps.util.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class ShipBoard {
             if (boat.isEmpty()) {
                 shipBoard.remove(boat);
                 result = true;
+                Console.pause(1000);
                 break;
             }
         }
