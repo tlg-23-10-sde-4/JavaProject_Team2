@@ -111,6 +111,11 @@ public class BattleshipGame {
 
             System.out.println("Player 1's turn to fire: ");
             player1FiringBoard.fire(player1.takeTurn(player1FiringBoard, player2Shipboard));
+
+            if (!player1FiringBoard.impact(Player.getGuess())) {
+                System.out.println("that round was a miss!");
+                Console.pause(1500);
+            }
             if (player1FiringBoard.impact(Player.getGuess())) {
                 System.out.println("that round hit a ship!");
                 Console.pause(1500);
